@@ -1,3 +1,7 @@
+const email = "support@prolog-app.com";
+const subject = "Support Request";
+const body = "Please Describe your issue";
+const mailtoLink = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 describe("Sidebar Navigation", () => {
   beforeEach(() => {
     cy.visit("http://localhost:3000/dashboard");
@@ -29,6 +33,8 @@ describe("Sidebar Navigation", () => {
       cy.get("nav")
         .contains("Settings")
         .should("have.attr", "href", "/dashboard/settings");
+
+      cy.get("nav").contains("Support").should("have.attr", "href", mailtoLink);
     });
 
     it("is collapsible", () => {
