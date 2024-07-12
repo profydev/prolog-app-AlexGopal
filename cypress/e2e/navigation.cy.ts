@@ -88,6 +88,10 @@ describe("Sidebar Navigation", () => {
       // check that all links are rendered
       cy.get("nav").find("a").should("have.length", 6);
 
+      // Support button should be rendered but Collapse button not
+      cy.get("nav").contains("Support").should("exist");
+      cy.get("nav").contains("Collapse").should("not.be.visible");
+
       // close mobile navigation and check that it disappears
       cy.get("img[alt='close menu']").click();
       cy.wait(500);
