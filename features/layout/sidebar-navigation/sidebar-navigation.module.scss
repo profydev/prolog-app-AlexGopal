@@ -18,10 +18,6 @@
   &.isCollapsed {
     @media (min-width: breakpoint.$desktop) {
       width: 5.1875rem;
-
-      .logo {
-        width: 1.4375rem;
-      }
     }
   }
 }
@@ -53,6 +49,35 @@
 
   @media (min-width: breakpoint.$desktop) {
     margin: space.$s0 space.$s4;
+  }
+}
+
+.logoLarge {
+  // through css modules composes allows the large and small logo classes to inherit the shared logo class
+  // we add the logo class to remove code reptition
+  composes: logo;
+  width: 7.375rem;
+
+  @media (min-width: breakpoint.$desktop) {
+    margin: space.$s0 space.$s4;
+
+    &.isCollapsed {
+      display: none;
+    }
+  }
+}
+
+.logoSmall {
+  composes: logo;
+  display: none;
+  width: 1.4375rem;
+
+  @media (min-width: breakpoint.$desktop) {
+    margin: space.$s0 space.$s4;
+
+    &.isCollapsed {
+      display: block;
+    }
   }
 }
 
