@@ -82,5 +82,17 @@ describe("Issue List", () => {
       cy.wait(1500);
       cy.contains("Page 2 of 3");
     });
+
+    it("tests if the user's data is correct", () => {
+      cy.get("main")
+        .find("tbody")
+        .find("tr")
+        .each(($el, index) => {
+          if (index === 0) {
+            const issue = mockIssues1.items[index];
+            cy.wrap($el).contains(issue.numUsers);
+          }
+        });
+    });
   });
 });
