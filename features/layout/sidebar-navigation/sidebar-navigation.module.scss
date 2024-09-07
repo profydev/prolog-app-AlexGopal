@@ -11,13 +11,13 @@
   flex-direction: column;
 
   @media (min-width: breakpoint.$desktop) {
-    width: 17.5rem;
+    width: 17.5rem; // Expanded width of sidebar
     height: 100vh;
   }
 
-  &.isCOllapsed {
+  &.isCollapsed {
     @media (min-width: breakpoint.$desktop) {
-      width: 3rem;
+      width: 83px; // Collapsed width
     }
   }
 }
@@ -53,8 +53,6 @@
 }
 
 .logoLarge {
-  // through css modules composes allows the large and small logo classes to inherit the shared logo class
-  // we add the logo class to remove code reptition
   composes: logo;
   width: 7.375rem;
 

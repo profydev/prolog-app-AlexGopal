@@ -56,13 +56,13 @@
 }
 
 .sidebar {
-  width: 250px;
+  width: 250px; // Expanded width
   background: color.$gray-900;
   position: relative;
   z-index: 2;
 
   &.isCollapsed {
-    width: 83px;
+    width: 83px; // Collapsed width (match with sidebar-navigation.module.scss)
   }
 }
 
@@ -71,10 +71,10 @@
   display: flex;
   flex-direction: column;
   position: relative;
-  margin-left: 20px;
+  margin-left: 30px; // Matches expanded sidebar width
 
   &.isCollapsed {
-    margin-left: 0; // Aligns content and footer to sidebar when collapsed
+    margin-left: 0; // Matches collapsed sidebar width
   }
 }
 
@@ -93,5 +93,13 @@
     margin-top: 0;
     padding: space.$s8;
     border-top-left-radius: space.$s10;
+  }
+}
+
+.footer {
+  margin-left: 250px; // Expanded state
+
+  &.isCollapsed {
+    margin-left: 83px; // Collapsed state
   }
 }
