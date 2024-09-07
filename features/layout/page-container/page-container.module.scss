@@ -4,13 +4,77 @@
 @use "@styles/breakpoint";
 @use "@styles/misc";
 
+// .container {
+//   display: flex;
+//   min-height: 100vh; // Full height of the viewport
+// }
+
+// .sidebar {
+//   width: 250px; // Fixed width for the sidebar
+//   background: color.$gray-900;
+//   position: relative;
+//   z-index: 2; // Ensure sidebar stays above other content
+
+//   &.isCollapsed {
+//     width: 83px;
+//   }
+// }
+
+// .contentWrapper {
+//   flex: 1;
+//   display: flex;
+//   flex-direction: column;
+//   position: relative;
+//   margin-left: 50px; // Matches the sidebar width when expanded
+
+//   &.isCollapsed {
+//     margin-left: 83px; // Matches the collapsed sidebar width
+//   }
+// }
+
+// .main {
+//   flex: 1; // Main content takes up remaining space
+// }
+
+// .contentContainer {
+//   flex: 1;
+//   margin-top: misc.$header-height;
+//   padding: space.$s8 space.$s3;
+//   background: white;
+//   overflow: hidden; // Ensure no content overflows
+
+//   @media (min-width: breakpoint.$desktop) {
+//     margin-top: 0; // Remove top margin for desktop
+//     padding: space.$s8;
+//     border-top-left-radius: space.$s10;
+//   }
+// }
+
 .container {
   display: flex;
-  flex-direction: column;
-  background: color.$gray-900;
+  min-height: 100vh; // Full height of the viewport
+}
 
-  @media (min-width: breakpoint.$desktop) {
-    flex-direction: row;
+.sidebar {
+  width: 250px;
+  background: color.$gray-900;
+  position: relative;
+  z-index: 2;
+
+  &.isCollapsed {
+    width: 83px;
+  }
+}
+
+.contentWrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  margin-left: 20px;
+
+  &.isCollapsed {
+    margin-left: 0; // Aligns content and footer to sidebar when collapsed
   }
 }
 
@@ -19,27 +83,15 @@
 }
 
 .contentContainer {
-  min-height: calc(100vh - 2 * space.$s8 - misc.$header-height);
+  flex: 1;
   margin-top: misc.$header-height;
   padding: space.$s8 space.$s3;
   background: white;
+  overflow: hidden;
 
   @media (min-width: breakpoint.$desktop) {
-    min-height: calc(100vh - space.$s3 - 2 * space.$s8);
-    margin-top: space.$s3;
+    margin-top: 0;
     padding: space.$s8;
     border-top-left-radius: space.$s10;
   }
-}
-
-.title {
-  margin: space.$s0 space.$s0 space.$s1;
-  color: color.$gray-900;
-  font: font.$display-sm-medium;
-}
-
-.info {
-  margin-bottom: space.$s8;
-  color: color.$gray-500;
-  font: font.$text-md-regular;
 }

@@ -1,0 +1,84 @@
+// .footer {
+//     padding: 10px 20px;  // Adjust padding to reduce height
+//     text-align: center;
+//     background-color: #f8f9fa;
+//     color: #333;
+//     position: relative;
+//     z-index: 1;  // Ensure footer stays beneath sidebar
+//     font-size: 14px;
+//     line-height: 1.5;
+//   }
+
+// .footer {
+//   padding: 10px 20px;  // Adjust padding to reduce height
+//   background-color: #f8f9fa;
+//   color: #333;
+//   position: relative;
+//   z-index: 1;  // Ensure footer stays beneath sidebar
+//   font-size: 14px;
+//   line-height: 1.5;
+//   display: flex; //aligns items horizontally
+//   justify-content: space-between; //distrubates space between links and logo
+//   align-items: center; //vertically centers items in the footer
+//   position: relative;
+
+//   .navLinks {
+//     display: flex;
+//     gap: 20px;  // Space between the links
+
+//     a {
+//       color: #333;
+//       text-decoration: none;
+//       font-weight: bold;
+
+//       &:hover {
+//         text-decoration: underline;
+//       }
+//     }
+//   }
+
+//   .footerInfo {
+//     display: flex;
+//     align-items: center;
+//     gap: 20px;  // Space between the version text and logo
+
+//     .logo {
+//       height: 24px;  // Adjust as needed for your logo size
+//     }
+//   }
+// }
+
+.footer {
+  padding: 10px 20px; // Adjust padding to reduce height
+  background-color: #f8f9fa;
+  color: #333;
+  font-size: 14px;
+  line-height: 1.5;
+  z-index: 1;
+  position: relative;
+
+  // Apply the same margin-left as the contentWrapper for alignment with sidebar
+  // margin-left: 30px; // Matches the sidebar width when expanded
+
+  // Ensure footer adjusts when the sidebar is collapsed
+  // &.isCollapsed {
+  //   margin-left: 83px;
+  // }
+
+  .navLinks {
+    display: flex;
+    gap: 20px; // Space between the links
+    justify-content: center;
+  }
+
+  .footerInfo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+
+    .logo {
+      height: 24px;
+    }
+  }
+}
