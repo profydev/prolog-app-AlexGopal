@@ -1,38 +1,41 @@
 // .footer {
-//     padding: 10px 20px;  // Adjust padding to reduce height
-//     text-align: center;
-//     background-color: #f8f9fa;
-//     color: #333;
-//     position: relative;
-//     z-index: 1;  // Ensure footer stays beneath sidebar
-//     font-size: 14px;
-//     line-height: 1.5;
-//   }
-
-// .footer {
-//   padding: 10px 20px;  // Adjust padding to reduce height
+//   // padding: 12px 20px; // Padding for the entire footer container
+//   padding: 0px 32px; // Padding for the entire footer container
 //   background-color: #f8f9fa;
 //   color: #333;
-//   position: relative;
-//   z-index: 1;  // Ensure footer stays beneath sidebar
 //   font-size: 14px;
 //   line-height: 1.5;
-//   display: flex; //aligns items horizontally
-//   justify-content: space-between; //distrubates space between links and logo
-//   align-items: center; //vertically centers items in the footer
+//   z-index: 1;
 //   position: relative;
+
+//   display: flex;
+//   align-items: center;
+//   justify-content: space-between;
+
+//   .version {
+//     flex: 1;
+//     text-align: left;
+//     margin-right: 20px; // Adjusted margin for alignment
+//   }
 
 //   .navLinks {
 //     display: flex;
-//     gap: 20px;  // Space between the links
+//     gap: 8px; // Spacing between buttons as per the latest image
+//     justify-content: center;
+//     flex: 2;
 
-//     a {
+//     button {
+//       height: 24px; // Ensure button height matches Figma
+//       padding: 0 18px; // Adjust padding based on the latest image
+//       background-color: transparent;
 //       color: #333;
-//       text-decoration: none;
-//       font-weight: bold;
+//       border-radius: 6px;
+//       border: none;
+//       font-size: 14px;
+//       cursor: pointer;
 
 //       &:hover {
-//         text-decoration: underline;
+//         background-color: #d0d0d0; // Optional hover effect
 //       }
 //     }
 //   }
@@ -40,45 +43,618 @@
 //   .footerInfo {
 //     display: flex;
 //     align-items: center;
-//     gap: 20px;  // Space between the version text and logo
+//     justify-content: flex-end;
+//     flex: 1;
 
 //     .logo {
-//       height: 24px;  // Adjust as needed for your logo size
+//       height: 24px; // Set logo height
+//       margin-left: 20px; // Adjust margin for spacing as per design
+//     }
+//   }
+// }
+
+// .footer {
+//   background-color: #f9fafb; // Hardcoded value for $gray-50
+//   padding: 16px 0; // Simplified padding
+//   border-top: 1px solid #e4e7ec; // Hardcoded value for $gray-200
+//   margin-left: 250px; // Matches expanded sidebar width
+
+//   &.isCollapsed {
+//     margin-left: 83px; // Matches collapsed sidebar width
+//   }
+// }
+
+// .container {
+//   max-width: 1160px; // Matches Figma design
+//   margin: 0 auto;
+//   padding: 0 16px; // Simplified padding
+//   display: flex;
+//   justify-content: space-between;
+//   align-items: center;
+//   height: 60px; // Matches Figma height
+// }
+
+// .footerInfo {
+//   display: flex;
+//   justify-content: space-between;
+//   align-items: center;
+//   width: 100%;
+// }
+
+// .version {
+//   color: #667085; // Hardcoded value for $gray-500
+//   font-size: 14px; // Simplified font size
+// }
+
+// .navLinks {
+//   display: flex;
+//   gap: 32px; // Matches Figma gap
+//   justify-content: center;
+
+//   .link {
+//     color: #667085; // Hardcoded value for $gray-500
+//     font-size: 16px; // Simplified font size
+//     text-decoration: none;
+//     padding: 8px 0; // Matches Figma padding
+//     &:hover {
+//       color: #9e77ed; // Hardcoded value for $primary-500
+//     }
+//   }
+// }
+
+// .logoWrap {
+//   .logo {
+//     width: 33px; // Matches Figma design
+//     height: auto;
+//   }
+// }
+
+// .footer {
+//   width: 100%;
+//   position: relative;
+//   background-color: #f8f9fa; // Matches the footer background color
+//   border-top: 1px solid #e4e7ec; // Top border like the Figma design
+//   z-index: 1;
+
+//   .container {
+//     max-width: 1160px;
+//     height: 60px; // Ensure height matches Figma
+//     padding: 0 32px; // Matches the Figma padding
+//     margin: 0 auto; // Center the container horizontally
+//     display: flex;
+//     justify-content: space-between;
+//     align-items: center;
+//   }
+
+//   .version {
+//     color: #667085; // Adjusted based on the Figma text color
+//     font-size: 14px; // Matches Figma font size
+//   }
+
+//   .navLinks {
+//     display: flex;
+//     gap: 32px; // Spacing between links
+//     align-items: center;
+//     justify-content: center;
+
+//     button {
+//       background-color: transparent;
+//       border: none;
+//       color: #667085;
+//       font-size: 14px;
+//       cursor: pointer;
+//       padding: 8px 0; // Padding for the buttons
+//       &:hover {
+//         color: #9e77ed; // Hover color matches Figma
+//       }
+//     }
+//   }
+
+//   .logo {
+//     height: 24px; // Logo size as per Figma
+//     width: auto;
+//   }
+// }
+
+// .footer {
+//   width: 100%;
+//   position: relative;
+//   background-color: #f8f9fa; // Matches the footer background color
+//   border-top: 1px solid #e4e7ec; // Top border as per the Figma design
+//   z-index: 1;
+
+//   .container {
+//     max-width: 1160px;
+//     height: 60px; // Ensure the height matches Figma
+//     padding: 0 32px; // Matches the Figma padding
+//     margin: 0 auto; // Center the container horizontally
+//     display: flex;
+//     justify-content: center; // Center the items within the container
+//     align-items: center;
+//     position: relative; // Allows positioning the version and logo absolutely
+//   }
+
+//   .version {
+//     font-family: 'Inter', sans-serif;  // Use the 'Inter' font family
+//     font-weight: 400;  // Regular weight
+//     font-size: 16px;  // Font size from the Figma design
+//     line-height: 24px;  // Line height from the Figma design
+//     color: #98A2B3;  // Gray400 color for the version text
+//     position: absolute;
+//     left: 32px; // Stick the version text to the left, matching the container's padding
+//   }
+
+//   .navLinks {
+//     display: flex;
+//     gap: 24px; // 24px gap between buttons as per Figma
+//     align-items: center;
+//     justify-content: center; // Center the buttons in the available space
+//     margin-top: 2px;
+//     margin-right: 1px;
+
+//     button {
+//       background-color: transparent; // Ensure the buttons have no background
+//       border: none; // Remove any borders from the buttons
+//       color: #667085; // Button text color, Gray500 as per Figma
+//       font-size: 16px; // Font size for the buttons
+//       cursor: pointer;
+//       padding: 0; // Remove padding to ensure buttons act as text links
+//       display: inline-block; // Make buttons behave like inline text links
+
+//       &:hover {
+//         color: #9e77ed; // Hover color for the buttons
+//       }
+//     }
+//   }
+
+//   .logoWrap {
+//     width: 160px;  // Matches the Figma design for the logo wrapper width
+//     height: 33px;  // Matches the Figma design for the logo height
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//     position: absolute;
+//     right: 32px; // Stick the logo to the right, matching the container's padding
+//   }
+
+//   .logo {
+//     width: auto;  // Adjust the width based on the aspect ratio
+//     height: 33px;  // Ensure the height of the logo matches the Figma design
+//     margin-right: -140px;
+//   }
+// }
+
+// .footer {
+//   width: 100%;
+//   position: relative;
+//   background-color: #f8f9fa; // Footer background color
+//   border-top: 1px solid #e4e7ec; // Top border for both versions
+//   z-index: 1;
+
+//   // Container for both views
+//   .container {
+//     max-width: 1160px;
+//     height: 60px;
+//     padding: 0 32px;
+//     margin: 0 auto;
+//     display: flex;
+//     justify-content: space-between;
+//     align-items: center;
+//   }
+
+//   .version {
+//     font-family: 'Inter', sans-serif;
+//     font-weight: 400;
+//     font-size: 16px;
+//     line-height: 24px;
+//     color: #98a2b3; // Gray400 for both views
+//     margin-right: auto;
+//   }
+
+//   .navLinks {
+//     display: flex;
+//     gap: 24px;
+//     align-items: center;
+//     justify-content: center;
+
+//     button {
+//       background-color: transparent;
+//       border: none;
+//       color: #667085; // Gray500
+//       font-size: 14px;
+//       cursor: pointer;
+//       padding: 0;
+//       display: inline-block;
+
+//       &:hover {
+//         color: #9e77ed; // Hover color
+//       }
+//     }
+//   }
+
+//   .logoWrap {
+//     width: 160px;
+//     height: 33px;
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//     margin-left: auto;
+
+//     .logo {
+//       width: auto;
+//       height: 33px;
+//     }
+//   }
+
+//   // Small footer (apply below 64em desktop breakpoint)
+//   @media (max-width: 64em) {
+//     .container {
+//       max-width: 351px; // Matches Figma's smaller view
+//       height: 177px;
+//       padding: 12px; // Adjust for smaller screens
+//       flex-direction: column; // Stack the items vertically in the correct order
+//     }
+
+//     // Reordering elements for small footer
+//     .navLinks {
+//       order: 1; // Buttons come first
+//       gap: 24px; // Match the correct gap between buttons for small footer
+//       margin-bottom: 24px; // Space between buttons and logo
+
+//       button {
+//         font-size: 16px; // Ensure consistent button text size
+//         padding: 0;
+//       }
+//     }
+
+//     .logoWrap {
+//       order: 2; // Logo comes second
+//       width: 33px; // Match the smaller logo width for mobile
+//       height: 33px; // Match the height of the logo
+//       margin: 24px auto; // Center the logo with margin on top and bottom
+//       display: flex;
+//       justify-content: center; // Ensure the logo is centered horizontally
+//     }
+
+//     .version {
+//       order: 3; // Version comes last
+//       font-size: 16px;
+//       line-height: 24px;
+//       text-align: center; // Center the version text in the small footer
+//       margin: 0; // Remove any extra margin
+//     }
+//   }
+// }
+
+// .footer {
+//   width: 100%;
+//   position: relative;
+//   background-color: #f8f9fa; // Matches the footer background color
+//   border-top: 1px solid #e4e7ec; // Top border as per the Figma design
+//   z-index: 1;
+
+//   .container {
+//     max-width: 1160px;
+//     height: 60px; // Ensure the height matches Figma
+//     padding: 0 32px; // Matches the Figma padding
+//     margin: 0 auto; // Center the container horizontally
+//     display: flex;
+//     justify-content: center; // Center the items within the container
+//     align-items: center;
+//     position: relative; // Allows positioning the version and logo absolutely
+//   }
+
+//   .version {
+//     font-family: 'Inter', sans-serif;  // Use the 'Inter' font family
+//     font-weight: 400;  // Regular weight
+//     font-size: 16px;  // Font size from the Figma design
+//     line-height: 24px;  // Line height from the Figma design
+//     color: #98A2B3;  // Gray400 color for the version text
+//     position: absolute;
+//     left: 32px; // Stick the version text to the left, matching the container's padding
+//   }
+
+//   .navLinks {
+//     display: flex;
+//     gap: 24px; // 24px gap between buttons as per Figma
+//     align-items: center;
+//     justify-content: center; // Center the buttons in the available space
+//     margin-top: 2px;
+//     margin-right: 1px;
+
+//     button {
+//       background-color: transparent; // Ensure the buttons have no background
+//       border: none; // Remove any borders from the buttons
+//       color: #667085; // Button text color, Gray500 as per Figma
+//       font-size: 16px; // Font size for the buttons
+//       cursor: pointer;
+//       padding: 0; // Remove padding to ensure buttons act as text links
+//       display: inline-block; // Make buttons behave like inline text links
+
+//       &:hover {
+//         color: #9e77ed; // Hover color for the buttons
+//       }
+//     }
+//   }
+
+//   .logoWrap {
+//     width: 160px;  // Matches the Figma design for the logo wrapper width
+//     height: 33px;  // Matches the Figma design for the logo height
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//     position: absolute;
+//     right: 32px; // Stick the logo to the right, matching the container's padding
+//   }
+
+//   .logo {
+//     width: auto;  // Adjust the width based on the aspect ratio
+//     height: 33px;  // Ensure the height of the logo matches the Figma design
+//     margin-right: -140px;
+//   }
+// }
+
+// .footer {
+//   width: 100%;
+//   position: relative;
+//   background-color: #f8f9fa; // Matches the footer background color
+//   border-top: 1px solid #e4e7ec; // Top border as per the Figma design
+//   z-index: 1;
+
+//   .container {
+//     max-width: 1160px;
+//     height: 60px; // Ensure the height matches Figma
+//     padding: 0 32px; // Matches the Figma padding
+//     margin: 0 auto; // Center the container horizontally
+//     display: flex;
+//     justify-content: center; // Center the items within the container
+//     align-items: center;
+//     position: relative; // Allows positioning the version and logo absolutely
+//   }
+
+//   .version {
+//     font-family: 'Inter', sans-serif;  // Use the 'Inter' font family
+//     font-weight: 400;  // Regular weight
+//     font-size: 16px;  // Font size from the Figma design
+//     line-height: 24px;  // Line height from the Figma design
+//     color: #98A2B3;  // Gray400 color for the version text
+//     position: relative;
+//     left: 0;
+//   }
+
+//   .navLinks {
+//     display: flex;
+//     gap: 24px; // 24px gap between buttons as per Figma
+//     align-items: center;
+//     justify-content: center;
+//     margin-top: 2px;
+//     margin-right: 1px;
+
+//     button {
+//       background-color: transparent;
+//       border: none;
+//       color: #667085;
+//       font-size: 16px;
+//       cursor: pointer;
+//       padding: 0;
+//       display: inline-block;
+
+//       &:hover {
+//         color: #9e77ed;
+//       }
+//     }
+//   }
+
+//   .logoWrap {
+//     width: 160px;
+//     height: 33px;
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//     margin-left: auto;
+
+//     .logo {
+//       width: auto;
+//       height: 33px;
+//       margin-right: 0;  // Make sure there’s no unnecessary margin offset
+//     }
+//   }
+
+//   // Small footer (apply below 64em desktop breakpoint)
+//   @media (max-width: 64em) {
+//     .container {
+//       max-width: 351px;
+//       height: 177px;
+//       padding: 12px;
+//       flex-direction: column;
+//       align-items: center;
+//     }
+
+//     .navLinks {
+//       order: 1;
+//       gap: 8px;
+//       padding: 24px 0;
+
+//       button {
+//         font-size: 14px;
+//         width: 26px;
+//         height: 24px;
+//       }
+//     }
+
+//     .logoWrap {
+//       order: 2;
+//       width: 23px;
+//       height: 33px;
+//       display: flex;
+//       justify-content: center;
+//       align-items: center;
+//       margin: 24px 0;
+//     }
+
+//     .logo {
+//       width: auto;
+//       height: 33px;
+//       margin-right: 0;  // Remove negative margin to keep the logo centered
+//     }
+
+//     .version {
+//       order: 3;
+//       font-size: 16px;
+//       line-height: 24px;
+//       text-align: center;
+//       margin-top: 24px;
+//       margin-bottom: 12px;
 //     }
 //   }
 // }
 
 .footer {
-  padding: 10px 20px; // Adjust padding to reduce height
-  background-color: #f8f9fa;
-  color: #333;
-  font-size: 14px;
-  line-height: 1.5;
-  z-index: 1;
+  width: 100%;
   position: relative;
+  background-color: #f8f9fa; // Matches the footer background color
+  border-top: 1px solid #e4e7ec; // Top border as per the Figma design
+  z-index: 1;
 
-  // Apply the same margin-left as the contentWrapper for alignment with sidebar
-  // margin-left: 30px; // Matches the sidebar width when expanded
+  .container {
+    max-width: 1160px;
+    height: 60px; // Ensure the height matches Figma for the large footer
+    padding: 0 32px; // Matches the Figma padding
+    margin: 0 auto; // Center the container horizontally
+    display: flex;
+    justify-content: center; // Center the items within the container
+    align-items: center;
+    position: relative; // Allows positioning the version and logo absolutely
+  }
 
-  // Ensure footer adjusts when the sidebar is collapsed
-  // &.isCollapsed {
-  //   margin-left: 83px;
-  // }
+  .version {
+    font-family: Inter, sans-serif; // Use the 'Inter' font family
+    font-weight: 400; // Regular weight
+    font-size: 16px; // Font size from the Figma design
+    line-height: 24px; // Line height from the Figma design
+    color: #98a2b3; // Gray400 color for the version text
+    position: relative; // Remove absolute positioning
+    left: 0; // Aligned to the left naturally
+  }
 
   .navLinks {
     display: flex;
-    gap: 20px; // Space between the links
-    justify-content: center;
+    gap: 24px; // 24px gap between buttons as per Figma
+    align-items: center;
+    justify-content: center; // Center the buttons in the available space
+    margin-top: 2px;
+    margin-right: 1px;
+
+    button {
+      background-color: transparent; // Ensure the buttons have no background
+      border: none; // Remove any borders from the buttons
+      color: #667085; // Button text color, Gray500 as per Figma
+      font-size: 16px; // Font size for the buttons
+      cursor: pointer;
+      padding: 0; // Remove padding to ensure buttons act as text links
+      display: inline-block; // Make buttons behave like inline text links
+
+      &:hover {
+        color: #9e77ed; // Hover color for the buttons
+      }
+    }
   }
 
-  .footerInfo {
+  .logoWrap {
+    width: 160px; // Matches the Figma design for the logo wrapper width
+    height: 33px; // Matches the Figma design for the logo height
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 20px;
+    justify-content: center;
+    margin-left: auto;
 
     .logo {
-      height: 24px;
+      width: auto; // Adjust the width based on the aspect ratio
+      height: 33px; // Ensure the height of the logo matches the Figma design
+    }
+  }
+
+  // Small footer (apply below 64em desktop breakpoint)
+  @media (width <= 64em) {
+    .container {
+      width: 375px; // Fixed width as per Figma
+      height: 150px; // Fixed height as per Figma
+      padding: 12px 0; // Adjust for smaller screens as per Figma
+      display: flex;
+      flex-direction: column; // Stack the items vertically in the correct order
+      align-items: center; // Center everything vertically
+    }
+
+    .navLinks {
+      order: 1; // Buttons come first
+      gap: 8px; // Smaller gap between buttons
+      padding: 24px 0;
+      justify-content: center; // Ensure buttons are horizontally centered
+      margin-bottom: -40px;
+      margin-right: -2px;
+
+      button {
+        font-size: 16px;
+        width: auto; // Ensure the button width adjusts properly
+        height: 24px;
+        padding: 0 8px; // Add padding to give buttons a bit more space
+      }
+    }
+
+    .navLinks button:last-child {
+      transform: translate(1px, 1px);
+
+      // i choose to not fully match the deisgn because it looks off
+    }
+
+    .logoWrap {
+      order: 2; // Logo comes second
+      width: 23px; // Match the smaller logo width
+      height: 33px; // Match the height of the logo
+      margin: 24px 0; // Center the logo vertically
+      justify-content: center;
+    }
+
+    .logo {
+      // transform: translateY(15px);
+      // transform: tanslateX(5px);
+      transform: translate(5px, 15px);
+    }
+
+    .version {
+      order: 3; // Version comes last
+      font-size: 16px;
+      line-height: 24px;
+      text-align: center; // Center the version text
+      margin-top: 24px; // Space between the logo and version
+      margin-bottom: 12px; // Add margin to move version up from the bottom
+      // transform: translateY(-10px);
+      // transform: translateX(3px);
+      transform: translate(3px, -10px);
+    }
+  }
+
+  // For large footer (apply above 64em desktop breakpoint)
+  @media (width >= 64em) {
+    .navLinks {
+      display: flex;
+      gap: 24px;
+      justify-content: center; // This should center the buttons horizontally
+      margin-left: auto;
+      margin-right: auto; // Ensure it's centered in the container
+      // transform: translateX(120px); // Fine-tune the position to the right
+      // transform: translateX(120px); // Fine-tune the position to the right
+      // transform: translateY(-2px); // Fine-tune the position to the right
+      transform: translate(122px, -2px);
+    }
+
+    .navLinks button:last-child {
+      margin-right: -4px; // Adjust the margin for the last button (tweak this value)
+      margin-bottom: -2px;
+    }
+
+    .logoWrap .logo {
+      margin-right: -140px; // Keep the margin-right for large footer only
     }
   }
 }
