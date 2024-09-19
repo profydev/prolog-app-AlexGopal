@@ -94,6 +94,12 @@
     padding: space.$s8;
     border-top-left-radius: space.$s10;
   }
+
+  @media (width <= 1023px) {
+    margin-left: -30px; // Reset any left margin
+    padding-left: 10px; // Add a small padding to the left side
+    padding-right: 10px; // Maintain balance with right padding
+  }
 }
 
 .footer {
