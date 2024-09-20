@@ -64,6 +64,11 @@
   &.isCollapsed {
     width: 83px; // Collapsed width (match with sidebar-navigation.module.scss)
   }
+
+  @media (width >= 405px) and (width <= 1023px) {
+    width: 0; // Set the width to 0px for screens between 405px and 1023px
+    transition: width 300ms ease-in-out; // Add a smooth transition when hiding
+  }
 }
 
 .contentWrapper {
