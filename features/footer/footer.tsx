@@ -1,9 +1,10 @@
-import { version } from "../../package.json";
+import packageJson from "../../package.json";
 import Link from "next/link";
 import styles from "./footer.module.scss";
 import Image from "next/image";
 
 export function Footer() {
+  const version = packageJson.version;
   return (
     <footer className={styles.footer}>
       <div className={styles.container}>
