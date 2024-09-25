@@ -1,4 +1,5 @@
 import { version } from "../../package.json";
+import Link from "next/link";
 import styles from "./footer.module.scss";
 import Image from "next/image";
 
@@ -13,12 +14,18 @@ export function Footer() {
 
         {/* Center-aligned buttons */}
         <nav className={styles.navLinks}>
-          <button onClick={() => (window.location.href = "/docs")}>Docs</button>
-          <button onClick={() => (window.location.href = "/api")}>API</button>
-          <button onClick={() => (window.location.href = "/help")}>Help</button>
-          <button onClick={() => (window.location.href = "/community")}>
+          <Link href="/#" className={styles.link}>
+            Docs
+          </Link>
+          <Link href="/#" className={styles.link}>
+            API
+          </Link>
+          <Link href="/#" className={styles.link}>
+            Help
+          </Link>
+          <Link href="/#" className={styles.link}>
             Community
-          </button>
+          </Link>
         </nav>
 
         {/* Right-aligned logo */}

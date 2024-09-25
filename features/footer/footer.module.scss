@@ -148,6 +148,174 @@
 //   }
 // }
 
+// .footer {
+//   width: 100%;
+//   position: relative;
+//   background-color: #f8f9fa;
+//   border-top: 1px solid #e4e7ec;
+//   z-index: 1;
+
+//   .container {
+//     max-width: 1160px;
+//     height: 60px;
+//     padding: 0 32px;
+//     margin: 0 auto;
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     position: relative;
+//   }
+
+//   .version {
+//     font-family: Inter, sans-serif;
+//     font-weight: 400;
+//     font-size: 16px;
+//     line-height: 24px;
+//     color: #98a2b3;
+//     position: relative;
+//     left: 0;
+//   }
+
+//   .navLinks {
+//     display: flex;
+//     gap: 24px;
+//     align-items: center;
+//     justify-content: center;
+//     margin-top: 2px;
+//     margin-right: 1px;
+
+//     button {
+//       background-color: transparent;
+//       border: none;
+//       color: #667085;
+//       font-size: 16px;
+//       cursor: pointer;
+//       padding: 0;
+//       display: inline-block;
+
+//       &:hover {
+//         color: #9e77ed;
+//       }
+//     }
+//   }
+
+//   .logoWrap {
+//     width: 160px;
+//     height: 33px;
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//     margin-left: auto;
+
+//     .logo {
+//       width: auto;
+//       height: 33px;
+//     }
+//   }
+
+//   // Small footer (apply below 1024px)
+//   @media (width <= 1023px) {
+//     margin-left: -28px;
+//     padding-left: 28px;
+
+//     .container {
+//       width: 375px;
+//       height: 150px;
+//       padding: 12px 0;
+//       display: flex;
+//       flex-direction: column;
+//       align-items: center;
+//     }
+
+//     .navLinks {
+//       order: 1;
+//       gap: 8px;
+//       padding: 24px 0;
+//       justify-content: center;
+//       margin-bottom: -40px;
+//       margin-right: -2px;
+
+//       button {
+//         font-size: 16px;
+//         width: auto;
+//         height: 24px;
+//         padding: 0 8px;
+//       }
+//     }
+
+//     .navLinks button:last-child {
+//       transform: translate(1px, 1px);
+//     }
+
+//     .logoWrap {
+//       order: 2;
+//       width: 23px;
+//       height: 33px;
+//       margin: 24px 0;
+//       justify-content: center;
+//     }
+
+//     .logo {
+//       transform: translate(5px, 15px);
+//     }
+
+//     .version {
+//       order: 3;
+//       font-size: 16px;
+//       line-height: 24px;
+//       text-align: center;
+//       margin-top: 24px;
+//       margin-bottom: 12px;
+//       transform: translate(3px, -10px);
+//     }
+//   }
+
+//   // Large footer (apply above 1160px)
+//   @media (width >= 1160px) {
+//     .navLinks {
+//       display: flex;
+//       gap: 24px;
+//       justify-content: center;
+//       margin-left: auto;
+//       margin-right: auto;
+//       transform: translate(122px, -2px);
+//     }
+
+//     .navLinks button:last-child {
+//       margin-right: -4px;
+//       margin-bottom: -2px;
+//     }
+
+//     .logoWrap .logo {
+//       margin-right: -140px;
+//     }
+//   }
+
+//   // Custom range for screen widths between 1024px and 1160px
+//   @media (width >= 1024px) and (width <= 1159px) {
+//     .container {
+//       width: calc(
+//         100vw - 80px
+//       ); // Dynamically adjust width between 1024px and 1160px
+
+//       padding: 0 16px;
+//     }
+
+//     .navLinks {
+//       display: flex;
+//       justify-content: center;
+//       gap: 16px;
+//       transform: translateX(
+//         calc((100vw - 1160px) / 2 + 300px)
+//       ); // Adjust the buttons' starting point
+//     }
+
+//     .logoWrap .logo {
+//       transform: translateX(60px);
+//     }
+//   }
+// }
+
 .footer {
   width: 100%;
   position: relative;
@@ -184,7 +352,7 @@
     margin-top: 2px;
     margin-right: 1px;
 
-    button {
+    a {
       background-color: transparent;
       border: none;
       color: #667085;
@@ -192,9 +360,17 @@
       cursor: pointer;
       padding: 0;
       display: inline-block;
+      text-decoration: none; // Removes underline for links
 
       &:hover {
         color: #9e77ed;
+      }
+
+      &:focus,
+      &:active,
+      &:visited {
+        color: #667085; // Maintain default color on focus, active, and visited
+        outline: none; // Remove outline for focus if desired
       }
     }
   }
@@ -235,7 +411,7 @@
       margin-bottom: -40px;
       margin-right: -2px;
 
-      button {
+      a {
         font-size: 16px;
         width: auto;
         height: 24px;
@@ -243,7 +419,7 @@
       }
     }
 
-    .navLinks button:last-child {
+    .navLinks a:last-child {
       transform: translate(1px, 1px);
     }
 
@@ -281,7 +457,7 @@
       transform: translate(122px, -2px);
     }
 
-    .navLinks button:last-child {
+    .navLinks a:last-child {
       margin-right: -4px;
       margin-bottom: -2px;
     }
@@ -307,7 +483,7 @@
       gap: 16px;
       transform: translateX(
         calc((100vw - 1160px) / 2 + 300px)
-      ); // Adjust the buttons' starting point
+      ); // Adjust the links' starting point
     }
 
     .logoWrap .logo {
