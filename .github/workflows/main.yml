@@ -141,8 +141,8 @@ jobs:
     runs-on: ubuntu-latest
     needs: install
     env:
-      NEXT_PUBLIC_API_BASE_URL: ${{ vars.NEXT_PUBLIC_API_BASE_URL }}
-
+      NEXT_PUBLIC_API_BASE_URL: ${{vars.NEXT_PUBLIC_API_BASE_URL}}
+  
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -151,17 +151,16 @@ jobs:
           cache: "npm"
       - run: npm ci
       - run: npm run build
-
-      # Check if .next directory is created after the build
-      - name: Check .next directory
-        run: ls -la .next
-
-      # Archive the .next folder using an absolute path
+      - name: List directory contents after build
+        run: ls -la
+      - name: List contents of .next directory
+        run: ls -la .next  # Lists all files in the .next directory
       - name: Archive production artifacts
         uses: actions/upload-artifact@v3
         with:
           name: nextjs-build
-          path: ${{ github.workspace }}/.next/
+          path: .next/  # Use relative path
+          if-no-files-found: warn
 
   e2e:
     runs-on: ubuntu-latest
@@ -174,14 +173,11 @@ jobs:
           node-version: "18"
           cache: "npm"
       - run: npm ci
-
-      # Download build artifacts using the absolute path
       - name: Download build artifacts
         uses: actions/download-artifact@v3
         with:
           name: nextjs-build
-          path: ${{ github.workspace }}/.next/
-
+          path: .next/
       - name: Cypress run
         uses: cypress-io/github-action@v4
         with:
