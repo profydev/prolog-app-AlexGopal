@@ -152,18 +152,14 @@ jobs:
       - run: npm ci
       - run: npm run build
       - name: List contents of .next directory after build
-        run: ls -la .next  # List contents of .next directory after build
+        run: ls -la .next  # List contents of .next directory
 
-      # Step to check the .next directory's existence and permissions
-      - name: Check .next directory existence and permissions
-        run: ls -ld .next
-
-      # Archive a specific file from .next to test upload
-      - name: Archive specific file as a test
+      # Archive the entire .next directory
+      - name: Archive production artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: test-nextjs-build
-          path: .next/build-manifest.json
+          name: nextjs-build
+          path: .next/
 
   e2e:
     runs-on: ubuntu-latest
