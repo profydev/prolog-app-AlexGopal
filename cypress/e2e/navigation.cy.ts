@@ -42,7 +42,26 @@ describe("Sidebar Navigation", () => {
       cy.get("nav").contains("Collapse").click();
 
       // check that links still exist and are functionable
-      cy.get("nav").find("a").should("have.length", 6).eq(1).click();
+      // cy.get("div.sidebar-navigation_fixedContainer__nm1R0 sidebar-navigation_container__mngcK sidebar-navigation_isCollapsed__C6fKy")
+      // cy.get("nav").find("a").should("have.length", 6).eq(1).click();
+      // cy.get('div.page-container_container__cVc34')
+      // .find("div.page-container_sidebar__A4gy2 page-container_isCollapsed__Vxx__")
+      // .find("div.sidebar-navigation_container__mngcK sidebar-navigation_isCollapsed__C6fKy")
+      // .find("div.sidebar-navigation_fixedContainer__nm1R0 sidebar-navigation_container__mngcK sidebar-navigation_isCollapsed__C6fKy")
+      // .find('nav')
+      // .find('a').should("have.length", 6).eq(1).click();
+      // so i think this test should work but it can't find the elements
+
+      cy.get("div.page-container_container__cVc34")
+        .find("nav")
+        .not("footer nav")
+        .find("a")
+        .should("have.length", 6)
+        .eq(1)
+        .click();
+
+      // cy.get('nav.sidebar-navigation_nav__7EXtO').find('a').should('have.length', 6).eq(1).click();
+      // cy.get('nav.sidebar-navigation_isCollapsed__C6fKy').find('a').should('have.length', 6).eq(1).click();
       cy.url().should("eq", "http://localhost:3000/dashboard/issues");
 
       // check that text is not rendered
@@ -61,8 +80,17 @@ describe("Sidebar Navigation", () => {
       cy.viewport(900, 1025);
 
       //check that the large logo is shown
-      cy.get('img[src="/icons/logo-small.svg"').should("not.be.visible");
-      cy.get('img[src="/icons/logo-large.svg"').should("be.visible");
+      // cy.get('img[src="/icons/logo-small.svg"').should("not.be.visible");
+      // cy.get('img[src="/icons/logo-large.svg"').should("be.visible");
+
+      // cy.find("header").get('img[src="/icons/logo-small.svg"').should("not.be.visible");
+      // cy.find("header").get('img[src="/icons/logo-large.svg"').should("be.visible");
+      cy.get('header img[src="/icons/logo-large.svg"]').should("be.visible");
+      cy.get('header img[src="/icons/logo-small.svg"]').should(
+        "not.be.visible",
+      );
+      // this is backwards fix it
+      // do get before find
     });
   });
 
@@ -102,7 +130,13 @@ describe("Sidebar Navigation", () => {
       isInViewport("nav");
 
       // check that all links are rendered
-      cy.get("nav").find("a").should("have.length", 6);
+      // cy.get("header").find("nav").find("a").should("have.length", 6);
+      cy.get("div.page-container_container__cVc34") // Adjust this div based on your dev tools
+        .find("div.page-container_sidebar__A4gy2")
+        .find("div.sidebar-navigation_container__mngcK")
+        .find("nav")
+        .find("a") // Find the anchor links inside the nav
+        .should("have.length", 6); // Verify the expected number of links
 
       // Support button should be rendered but Collapse button not
       cy.get("nav").contains("Support").should("exist");
