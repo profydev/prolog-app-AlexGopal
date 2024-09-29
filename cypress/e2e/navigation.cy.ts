@@ -60,8 +60,6 @@ describe("Sidebar Navigation", () => {
         .eq(1)
         .click();
 
-      // cy.get('nav.sidebar-navigation_nav__7EXtO').find('a').should('have.length', 6).eq(1).click();
-      // cy.get('nav.sidebar-navigation_isCollapsed__C6fKy').find('a').should('have.length', 6).eq(1).click();
       cy.url().should("eq", "http://localhost:3000/dashboard/issues");
 
       // check that text is not rendered
@@ -80,11 +78,6 @@ describe("Sidebar Navigation", () => {
       cy.viewport(900, 1025);
 
       //check that the large logo is shown
-      // cy.get('img[src="/icons/logo-small.svg"').should("not.be.visible");
-      // cy.get('img[src="/icons/logo-large.svg"').should("be.visible");
-
-      // cy.find("header").get('img[src="/icons/logo-small.svg"').should("not.be.visible");
-      // cy.find("header").get('img[src="/icons/logo-large.svg"').should("be.visible");
       cy.get('header img[src="/icons/logo-large.svg"]').should("be.visible");
       cy.get('header img[src="/icons/logo-small.svg"]').should(
         "not.be.visible",

@@ -1,16 +1,14 @@
-import packageJson from "../../package.json";
 import Link from "next/link";
 import styles from "./footer.module.scss";
 import Image from "next/image";
 
 export function Footer() {
-  const version = packageJson.version;
   return (
     <footer className={styles.footer}>
       <div className={styles.container}>
         {/* Left-aligned version */}
         <div className={styles.version}>
-          <span>Version: {version}</span>
+          <span>Version: {process.env.appVersion}</span>
         </div>
 
         {/* Center-aligned buttons */}
