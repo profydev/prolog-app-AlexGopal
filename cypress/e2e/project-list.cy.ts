@@ -78,5 +78,51 @@ describe("Project List", () => {
             .and("have.css", "background-color", expectedColor);
         });
     });
+
+    it("displays the loader while fetching projects", () => {
+      // Intercept the API call and add a delay directly in the intercept options
+      cy.intercept("GET", "https://prolog-api.profy.dev/project", {
+        delay: 2000, // 2-second delay to simulate loading
+        fixture: "projects.json", // Use the mock projects from the fixture
+      }).as("delayedGetProjects");
+
+      // Visit the page
+      cy.visit("http://localhost:3000/dashboard");
+
+      // Check if the loader is visible while loading
+      cy.get(".project-list_loaderwrapper__c7wmT").should("be.visible");
+
+      // Wait for the delayed request to finish
+      cy.wait("@delayedGetProjects");
+
+      // Ensure the loader disappears after loading
+      cy.get(".project-list_loaderwrapper__c7wmT").should("not.exist");
+    });
+  });
+
+  context("mobile resolution", () => {
+    beforeEach(() => {
+      cy.viewport("iphone-8");
+    });
+
+    it("displays the loader while fetching projects", () => {
+      // Intercept the API call and add a delay directly in the intercept options
+      cy.intercept("GET", "https://prolog-api.profy.dev/project", {
+        delay: 2000, // 2-second delay to simulate loading
+        fixture: "projects.json", // Use the mock projects from the fixture
+      }).as("delayedGetProjects");
+
+      // Visit the page
+      cy.visit("http://localhost:3000/dashboard");
+
+      // Check if the loader is visible while loading
+      cy.get(".project-list_loaderwrapper__c7wmT").should("be.visible");
+
+      // Wait for the delayed request to finish
+      cy.wait("@delayedGetProjects");
+
+      // Ensure the loader disappears after loading
+      cy.get(".project-list_loaderwrapper__c7wmT").should("not.exist");
+    });
   });
 });
