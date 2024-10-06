@@ -1,0 +1,230 @@
+@use "@styles/color";
+@use "@styles/font";
+@use "@styles/space";
+@use "@styles/breakpoint";
+
+/* ButtonStyles.module.css */
+// .alertContainer {
+//   position: relative;
+//   padding: 12px;  /* Slightly reduce padding to check if this fixes the height */
+//   margin-top: 32px !important;
+//   margin-left: -8px !important; /* Align with contentWrapper */
+//   margin-right: auto !important; /* Ensure it's centered */
+//   width: 1112px;
+//   height: auto;
+//   margin: 0 auto;
+//   box-sizing: border-box;
+//   border-radius: 8px !important;
+// }
+
+// .alertText {
+//   margin-right: 20px;
+//   line-height: 20px !important;  /* Slightly reduce line-height to decrease the height */
+//   color: color.$error-700 !important;
+// }
+
+// .customButton {
+//   right: 16px;
+//   top: 50%;
+//   transform: translateY(-50%);
+//   padding: 0;
+//   text-transform: none;
+//   margin: 0;  /* Ensure no margin */
+// }
+
+//   .customButton img {
+//     width: 20px;
+//     vertical-align: middle;
+//   }
+
+//   .customButton:hover {
+//     background: none;
+//     box-shadow: none;
+//   }
+
+//   // @media (max-width: breakpoint.$desktop) {
+
+//   // }
+
+//   @media (max-width: 64em) {
+//     .alertContainer {
+//         max-width: 351px;  /* Match the design width for mobile */
+//         width: 100%;
+//         padding: 12px;
+//         margin-top: 16px;
+//         position: relative;  /* Ensure proper layout */
+//     }
+
+//     .alertText {
+//         margin-right: 12px;
+//         line-height: 20px !important;
+//         font-size: 14px !important;
+//         color: color.$error-700 !important;
+//         max-width: calc(100% - 70px);  /* Ensure enough space for text */
+//         white-space: normal;  /* Allow text wrapping */
+//         display: inline-block;  /* Keep the text inline */
+//     }
+
+//     .customButton {
+//         position: absolute;
+//         right: 8px;
+//         top: 50%;
+//         transform: translateY(-50%);
+//         text-transform: none;
+//         font-size: 14px !important;
+//         font-weight: 500 !important;
+//         line-height: 20px !important;
+//     }
+
+//     .customButton img {
+//         width: 20px;
+//         vertical-align: middle;
+//         transform: translateY(1px);
+//     }
+
+//     .alertIcon {
+//         margin-top: 2px;
+//         transform: translateY(3px) !important;
+//         vertical-align: middle;
+//     }
+// }
+
+// .alertContainer {
+//   position: relative;
+//   padding: 12px;
+//   width: 100%;
+//   height: auto;
+//   margin-top: 16px;
+//   margin-left: 0; // Default for mobile
+//   margin-right: auto; // Default for mobile
+//   box-sizing: border-box;
+//   border-radius: 8px !important;
+// }
+
+// .alertText {
+//   margin-right: 12px;  // Mobile margin-right
+//   line-height: 20px !important;
+//   font-size: font.$text-sm-medium !important;
+//   color: color.$error-700 !important;
+//   max-width: calc(100% - 120px) !important;  // Mobile: Allow room for the button
+//   white-space: normal;  // Allow text wrapping on mobile
+//   display: inline-block;
+// }
+
+// .customButton {
+//   right: 8px;  // Mobile button position
+//   top: 50%;
+//   transform: translateY(-50%);
+//   padding-right: 10px;
+//   text-transform: none !important;
+//   font-size: font.$text-sm-medium !important;
+//   font-weight: 500 !important;
+//   line-height: 20px !important;
+//   position: absolute;
+// }
+
+// .customButton img {
+//   width: 20px;
+//   vertical-align: middle;
+//   transform: translateY(1px);  // Fine-tuning for mobile
+// }
+
+// .alertIcon {
+//   margin-top: 2px;
+//   transform: translateY(3px) !important;
+//   vertical-align: middle;
+// }
+
+// // Desktop adjustments for larger screens
+// @media (min-width: 64em) {
+//   .alertContainer {
+//     width: 1112px;  // Fixed width for desktop
+//     padding: 5.5px 16px !important;
+//     margin-top: 32px !important;  // Desktop margin-top of 32px
+//     margin-left: -8px !important;  // Align with contentWrapper for desktop
+//     margin-right: auto !important;
+//   }
+
+//   .alertText {
+//     margin-right: 20px;  // Adjust margin for desktop
+//     max-width: calc(100% - 20px) !important;  // Ensure room for the button on desktop
+//   }
+
+//   .customButton {
+//     right: 16px;  // Adjust position for desktop
+//   }
+
+//   .customButton img {
+//     width: 24px !important;
+//     transform: translateY(1px) !important;  // Fine-tuning for desktop
+//   }
+
+//   .alertIcon {
+//     margin-top: 0;
+//     transform: translateY(2px) !important;  // Fine-tune icon position for desktop
+//   }
+// }
+
+.alertContainer {
+  position: relative;
+  padding: 12px;
+  width: 100%;
+  height: auto;
+  margin-top: 16px;
+  margin-left: 0;
+  margin-right: auto;
+  box-sizing: border-box;
+  border-radius: 8px !important;
+}
+
+.alertText {
+  margin-right: 12px; // Mobile margin-right
+  line-height: 20px !important;
+  font-size: font.$text-sm-medium !important;
+  color: color.$error-700 !important;
+  max-width: calc(100% - 120px) !important;
+  white-space: normal;
+  display: inline-block;
+}
+
+.customButton {
+  right: 8px; // Mobile button position
+  top: 50%;
+  transform: translateY(-50%);
+  padding-right: 10px;
+  text-transform: none !important;
+  font-size: font.$text-sm-medium !important;
+  font-weight: 500 !important;
+  line-height: 20px !important;
+  position: absolute;
+}
+
+.customButton img {
+  width: 20px;
+  vertical-align: middle;
+  transform: translateY(1px);
+}
+
+// Desktop adjustments for larger screens
+@media (width >= 64em) {
+  .alertContainer {
+    width: 1112px; // Fixed width for desktop
+    padding: 5.5px 16px !important;
+    margin-top: 32px !important;
+    margin-left: -8px !important;
+    margin-right: auto !important;
+  }
+
+  .alertText {
+    margin-right: 20px; // Adjust margin for desktop
+    max-width: calc(100% - 20px) !important;
+  }
+
+  .customButton {
+    right: 16px; // Adjust position for desktop
+  }
+
+  .customButton img {
+    width: 24px !important;
+  }
+}
