@@ -21,6 +21,7 @@ export function Alert({
   children,
   variant = "outlined",
   severity = "error",
+  onActionClick,
 }: AlertProps) {
   return (
     <MuiAlert
@@ -48,6 +49,7 @@ export function Alert({
         variant="text"
         color="error"
         endIcon={<img src="/icons/arrow-right.svg" alt="arrow right icon" />}
+        onClick={onActionClick}
         sx={{
           position: "absolute",
           right: "8px", // Default for mobile
