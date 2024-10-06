@@ -98,6 +98,48 @@ describe("Project List", () => {
       // Ensure the loader disappears after loading
       cy.get(".project-list_loaderwrapper__c7wmT").should("not.exist");
     });
+
+    it("shows an error message", () => {
+      // Intercept the API call and add a delay directly in the intercept options
+      cy.intercept(
+        { url: "https://prolog-api.profy.dev/project", times: 4 },
+        { statusCode: 500 },
+      );
+
+      // Visit the page
+      cy.visit("http://localhost:3000/dashboard");
+
+      // Check that the error message is displayed
+      cy.get(".MuiAlert-root", { timeout: 15000 })
+        .should("be.visible")
+        .find("button")
+        .click();
+
+      const languageNames = ["React", "Node.js", "Python"];
+      const statusMap: { [key: string]: string } = {
+        error: "critical",
+        warning: "warning",
+        info: "stable",
+      };
+
+      // get all project cards
+      cy.get("main")
+        .find("li")
+        .each(($el, index) => {
+          // check that project data is rendered
+          cy.wrap($el).contains(mockProjects[index].name);
+          cy.wrap($el).contains(languageNames[index]);
+          cy.wrap($el).contains(mockProjects[index].numIssues);
+          cy.wrap($el).contains(mockProjects[index].numEvents24h);
+          cy.wrap($el).contains(
+            capitalize(statusMap[mockProjects[index].status]),
+          );
+          //<Badge color={statusColors[statusMap[status]]}>{capitalize(statusMap[status])}
+          cy.wrap($el)
+            .find("a")
+            .should("have.attr", "href", "/dashboard/issues");
+        });
+    });
   });
 
   context("mobile resolution", () => {
@@ -123,6 +165,45 @@ describe("Project List", () => {
 
       // Ensure the loader disappears after loading
       cy.get(".project-list_loaderwrapper__c7wmT").should("not.exist");
+    });
+
+    it("shows an error message", () => {
+      // Intercept the API call and add a delay directly in the intercept options
+      cy.intercept(
+        { url: "https://prolog-api.profy.dev/project", times: 4 },
+        { statusCode: 500 },
+      );
+
+      // Visit the page
+      cy.visit("http://localhost:3000/dashboard");
+
+      // Check that the error message is displayed
+      cy.get(".MuiAlert-root", { timeout: 15000 }).should("be.visible");
+
+      const languageNames = ["React", "Node.js", "Python"];
+      const statusMap: { [key: string]: string } = {
+        error: "critical",
+        warning: "warning",
+        info: "stable",
+      };
+
+      // get all project cards
+      cy.get("main")
+        .find("li")
+        .each(($el, index) => {
+          // check that project data is rendered
+          cy.wrap($el).contains(mockProjects[index].name);
+          cy.wrap($el).contains(languageNames[index]);
+          cy.wrap($el).contains(mockProjects[index].numIssues);
+          cy.wrap($el).contains(mockProjects[index].numEvents24h);
+          cy.wrap($el).contains(
+            capitalize(statusMap[mockProjects[index].status]),
+          );
+          //<Badge color={statusColors[statusMap[status]]}>{capitalize(statusMap[status])}
+          cy.wrap($el)
+            .find("a")
+            .should("have.attr", "href", "/dashboard/issues");
+        });
     });
   });
 });
