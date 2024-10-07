@@ -1,0 +1,84 @@
+@use "@styles/color";
+@use "@styles/font";
+@use "@styles/space";
+@use "@styles/breakpoint";
+
+.alertContainer {
+  position: relative;
+  padding: 12px;
+  width: 100%;
+  height: auto;
+  margin-top: 16px;
+  margin-left: 0;
+  margin-right: auto;
+  box-sizing: border-box;
+  border-radius: 8px !important;
+}
+
+.alertText {
+  margin-right: 12px; // Mobile margin-right
+  line-height: 20px !important;
+  font-size: font.$text-sm-medium !important;
+  color: color.$error-700 !important;
+  max-width: calc(100% - 120px) !important;
+  white-space: normal;
+  display: inline-block;
+}
+
+.customButton {
+  right: 8px; // Mobile button position
+  top: 50%;
+  transform: translateY(-50%);
+  padding-right: 10px;
+  text-transform: none !important;
+  font-size: font.$text-sm-medium !important;
+  font-weight: 500 !important;
+  line-height: 20px !important;
+  position: absolute;
+}
+
+.customButton img {
+  width: 20px;
+  vertical-align: middle;
+  transform: translateY(1px);
+}
+
+// Desktop adjustments for larger screens
+@media (min-width: breakpoint.$desktop) {
+  .alertContainer {
+    width: 1112px; // Fixed width for desktop
+    padding: 5.5px 16px !important;
+    margin-top: 32px !important;
+    margin-left: -8px !important;
+    margin-right: auto !important;
+    max-width: calc(
+      100% - 16px
+    ); // Ensure there's always a 16px gap on the right side
+  }
+
+  .alertText {
+    margin-right: 20px; // Adjust margin for desktop
+    max-width: calc(100% - 20px) !important;
+  }
+
+  .customButton {
+    right: 16px; // Adjust position for desktop
+  }
+
+  .customButton img {
+    width: 24px !important;
+  }
+}
+
+// Gradually push it to the right after 1440px
+@media (width >= 1440px) {
+  .alertContainer {
+    width: calc(
+      100% - 16px
+    ); // Allow the container to grow with the screen width
+
+    max-width: 1920px; // Limit the max width to 1920px for larger screens
+    margin-left: auto;
+    margin-right: 16px; // Keep 16px gap from the right
+  }
+}

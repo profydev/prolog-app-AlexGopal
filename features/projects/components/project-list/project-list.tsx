@@ -1,9 +1,10 @@
 import { ProjectCard } from "../project-card";
 import { useGetProjects } from "../../api/use-get-projects";
 import styles from "./project-list.module.scss";
+import { Alert } from "@features/ui";
 
 export function ProjectList() {
-  const { data, isLoading, isError, error } = useGetProjects();
+  const { data, isLoading, isError, error, refetch } = useGetProjects();
 
   if (isLoading) {
     return (
@@ -15,7 +16,15 @@ export function ProjectList() {
 
   if (isError) {
     console.error(error);
-    return <div>Error: {error.message}</div>;
+    // return <div>Error: {error.message}</div>;
+    // return <div><Alert>Error: {error.message}</Alert></div>;
+    return (
+      <div>
+        <Alert onActionClick={refetch}>
+          There was a problem while loading the project data.
+        </Alert>
+      </div>
+    );
   }
 
   return (
