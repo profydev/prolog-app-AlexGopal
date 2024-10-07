@@ -178,7 +178,10 @@ describe("Project List", () => {
       cy.visit("http://localhost:3000/dashboard");
 
       // Check that the error message is displayed
-      cy.get(".MuiAlert-root", { timeout: 15000 }).should("be.visible");
+      cy.get(".MuiAlert-root", { timeout: 15000 })
+        .should("be.visible")
+        .find("button")
+        .click();
 
       const languageNames = ["React", "Node.js", "Python"];
       const statusMap: { [key: string]: string } = {
