@@ -1,13 +1,33 @@
+// $s0: 0;
+// $s1: 0.25rem;
+// $s2: 0.5rem;
+// $s3: 0.75rem;
+// $s4: 1rem;
+// $s5: 1.25rem;
+// $s6: 1.5rem;
+// $s8: 2rem;
+// $s10: 2.5rem;
+// $s12: 3rem;
+// $s16: 4rem;
+// $s20: 5rem;
+// $s24: 6rem;
+
 $s0: 0;
-$s1: 0.25rem;
-$s2: 0.5rem;
-$s3: 0.75rem;
-$s4: 1rem;
-$s5: 1.25rem;
-$s6: 1.5rem;
-$s8: 2rem;
-$s10: 2.5rem;
-$s12: 3rem;
-$s16: 4rem;
-$s20: 5rem;
-$s24: 6rem;
+$s1: 0.25rem; // 4px
+$s2: 0.5rem; // 8px
+$s2-l: 0.625rem; // 10px
+$s3: 0.75rem; // 12px
+$s3-l: 0.8rem; // 13px
+$s3-xl: 0.875rem; // 14px
+$s4: 1rem; // 16px
+$s4-l: 1.125rem; // 18px
+$s5: 1.25rem; // 20px
+$s6: 1.5rem; // 24px
+$s7: 1.75rem; // 28px
+$s8: 2rem; // 32px
+$s9: 2.25rem; // 36px
+$s10: 2.5rem; // 40px
+$s12: 3rem; // 48px
+$s16: 4rem; // 64px
+$s20: 5rem; // 80px
+$s24: 6rem; // 96px

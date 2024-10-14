@@ -1,0 +1,421 @@
+// .button {
+//   cursor: pointer;
+
+//   /* remove default button styles */
+//   border: none;
+//   margin: 0;
+//   padding: 0;
+//   background: transparent;
+//   line-height: normal;
+//   -webkit-font-smoothing: inherit;
+//   -moz-osx-font-smoothing: inherit;
+//   appearance: none;
+
+//   &::-moz-focus-inner {
+//     border: 0;
+//     padding: 0;
+//   }
+// }
+
+// @use "@styles/color";
+// @use "@styles/font";
+// @use "@styles/space";
+
+// .button {
+//   width: fit-content;
+//   display: flex;
+//   align-items: center;
+//   border-radius: space.$s4;
+
+//   &.sm {
+//     padding: space.$s0 space.$s2;
+//     height: 1.375rem;
+//     font: font.$text-xs-medium;
+//   }
+
+//   &.md {
+//     padding: 0 0.625rem;
+//     height: 1.5rem;
+//     font: font.$text-sm-medium;
+//   }
+
+//   &.lg {
+//     padding: space.$s0 space.$s3;
+//     height: 1.75rem;
+//     font: font.$text-sm-medium;
+//   }
+
+//   &.gray {
+//     background: color.$gray-100;
+//     color: color.$gray-700;
+//   }
+
+//   &.primary {
+//     background: color.$primary-50;
+//     color: color.$primary-700;
+//   }
+
+//   &.error {
+//     background: color.$error-50;
+//     color: color.$error-700;
+//   }
+
+//   &.warning {
+//     background: color.$warning-50;
+//     color: color.$warning-700;
+//   }
+
+//   &.success {
+//     background: color.$success-50;
+//     color: color.$success-700;
+//   }
+
+// }
+
+// matching the padding to the designs
+
+// @use "@styles/color";
+// @use "@styles/space";
+// @use "@styles/font";
+
+// .button {
+//   display: inline-flex;
+//   align-items: center;
+//   justify-content: center;
+//   border: none;
+//   border-radius: space.$s4;
+//   cursor: pointer;
+//   transition: background-color 0.2s ease;
+//   gap: space.$s2;
+
+//   &.sm {
+//     padding: space.$s2 space.$s3-xl; // 0.5rem vertical, 0.875rem horizontal
+//     font: font.$text-sm-medium;
+//     line-height: 20px;
+//   }
+
+//   &.md {
+//     padding: space.$s3-l space.$s4-l; // 0.8rem vertical, 1.125rem horizontal
+//     font: font.$text-sm-medium;
+//     line-height: 22px;
+//   }
+
+//   &.lg {
+//     padding: space.$s4 space.$s5; // 1rem vertical, 1.25rem horizontal
+//     font: font.$text-md-medium;
+//     line-height: 24px;
+//   }
+
+//   &.xlg {
+//     padding: space.$s4-l space.$s6; // 1.125rem vertical, 1.5rem horizontal
+//     font: font.$text-md-medium;
+//     line-height: 26px;
+//   }
+
+//   &.primary {
+//     background: color.$primary-50;
+//     color: color.$primary-700;
+//   }
+
+//   &.gray {
+//     background: color.$gray-100;
+//     color: color.$gray-700;
+//   }
+
+//   &.error {
+//     background: color.$error-50;
+//     color: color.$error-700;
+//   }
+
+//   &.warning {
+//     background: color.$warning-50;
+//     color: color.$warning-700;
+//   }
+
+//   &.success {
+//     background: color.$success-50;
+//     color: color.$success-700;
+//   }
+
+//   &.before {
+//     padding-top: space.$s2-l;
+//     padding-bottom: space.$s2-l;
+//     padding-left: space.$s2 + space.$s2;
+//     padding-right: space.$s2 + space.$s2;
+//     .icon {
+//       margin-right: space.$s2;
+//     }
+//   }
+
+//   &.after {
+//     padding-top: space.$s2-l;
+//     padding-bottom: space.$s2-l;
+//     padding-left: space.$s2 + space.$s2;
+//     padding-right: space.$s2 + space.$s2;
+//     flex-direction: row-reverse;
+//     .icon {
+//       margin-left: space.$s2;
+//     }
+//   }
+
+//   &.only {
+//     padding: 10px;
+//     justify-content: center;
+//     .icon {
+//       margin: 0;
+//     }
+//   }
+// }
+
+// .icon {
+//   width: 1rem;
+//   height: 1rem;
+// }
+
+@use "@styles/color";
+@use "@styles/space";
+@use "@styles/font";
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: space.$s4;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  gap: space.$s2;
+
+  &.sm {
+    padding: space.$s1 space.$s2; // 0.25rem vertical, 0.5rem horizontal
+    font: font.$text-sm-medium;
+    line-height: 1.5;
+
+    .icon {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  &.md {
+    padding: space.$s2 space.$s3; // 0.5rem vertical, 0.75rem horizontal
+    font: font.$text-md-regular;
+    line-height: 1.7;
+
+    .icon {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  &.lg {
+    padding: space.$s3 space.$s4; // 0.75rem vertical, 1rem horizontal
+    font: font.$text-lg-regular;
+    line-height: 1.85;
+
+    .icon {
+      width: 30px;
+      height: 30px;
+    }
+  }
+
+  &.xlg {
+    padding: space.$s4 space.$s5; // 1rem vertical, 1.25rem horizontal
+    font: font.$text-lg-medium;
+    line-height: 2.1;
+
+    .icon {
+      width: 30px;
+      height: 30px;
+    }
+  }
+
+  &.primary {
+    border: 1px solid color.$primary-600;
+    background: color.$primary-600;
+    color: color.$white-000;
+
+    &:hover {
+      border: 1px solid color.$primary-700;
+      background-color: color.$primary-700; // Hover shade for primary
+    }
+
+    &:focus {
+      // outline: 2px solid color.$primary-700; // Define the focus outline
+      // outline-offset: 2px;
+      border: 4px solid color.$primary-100;
+    }
+
+    &:disabled {
+      cursor: not-allowed; // Disable pointer events
+      border: 1px solid color.$primary-200; // Grayed-out border for disabled state
+      background: color.$primary-200; // Use a neutral gray for disabled background
+      box-shadow: 0 1px 2px 0 rgb(16 24 40 / 5%);
+    }
+  }
+
+  &.secondary {
+    border: 1px solid color.$primary-50;
+    background: color.$primary-50;
+    color: color.$primary-700;
+
+    &:hover {
+      border: 1px solid color.$primary-100;
+      background: color.$primary-100; // Background color when hovered
+    }
+
+    &:focus {
+      border: 4px solid color.$primary-100;
+    }
+
+    &:disabled {
+      cursor: not-allowed; // Disable pointer events
+      border: 1px solid color.$primary-25; // Grayed-out border for disabled state
+      background: color.$primary-25; // Use a neutral gray for disabled background
+      box-shadow: 0 1px 2px 0 rgb(16 24 40 / 5%);
+      color: color.$primary-300;
+    }
+  }
+
+  &.gray {
+    border: 1px solid color.$gray-300;
+    background: color.$white-000;
+    color: color.$gray-700;
+
+    &:hover {
+      border: 1px solid color.$gray-300;
+      background-color: color.$gray-50; // Hover shade for gray
+      color: color.$gray-800;
+    }
+
+    &:focus {
+      background: color.$white-000;
+      box-shadow:
+        0 1px 2px 0 rgb(16 24 40 / 5%),
+        0 0 0 4px color.$gray-100;
+    }
+
+    &:disabled {
+      cursor: not-allowed; // Disable pointer events
+      border: 1px solid color.$gray-200; // Grayed-out border for disabled state
+      background: color.$white-000; // Use a neutral gray for disabled background
+      box-shadow: 0 1px 2px 0 rgb(16 24 40 / 5%);
+      color: color.$gray-300;
+    }
+  }
+
+  &.empty {
+    background: transparent;
+    border: none;
+    color: color.$primary-700;
+
+    &:hover {
+      background: color.$primary-50;
+    }
+
+    &:focus {
+      background: transparent;
+      border: 4px solid color.$primary-100;
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+      opacity: 0.5;
+      color: color.$gray-300;
+    }
+  }
+
+  // Corrected empty.gray selector (no universal selector *)
+  &.empty-gray {
+    background: transparent; // No background color
+    border: none; // No border
+    color: color.$gray-500; // Apply gray text color
+
+    &:hover {
+      background: color.$gray-50;
+      color: color.$gray-600;
+    }
+
+    &:focus {
+      background: transparent;
+      box-shadow:
+        0 1px 2px 0 rgb(16 24 40 / 5%),
+        0 0 0 4px color.$gray-100;
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+      opacity: 0.5;
+      color: color.$gray-300;
+    }
+  }
+
+  &.error {
+    border: 1px solid color.$error-600;
+    background: color.$error-600;
+    color: color.$white-000;
+
+    &:hover {
+      border: 1px solid color.$error-700;
+      background-color: color.$error-700; // Hover shade for error
+    }
+
+    &:focus {
+      border: 4px solid color.$error-100;
+    }
+
+    &:disabled {
+      cursor: not-allowed; // Disable pointer events
+      border: 1px solid color.$error-200; // Grayed-out border for disabled state
+      background: color.$error-200; // Use a neutral gray for disabled background
+      box-shadow: 0 1px 2px 0 rgb(16 24 40 / 5%);
+    }
+  }
+
+  &.empty-error {
+    background: transparent; // No background color
+    border: none; // No border
+    color: color.$error-700; // Apply the error text color
+
+    &:hover {
+      background: color.$error-50;
+    }
+
+    &:focus {
+      background: transparent;
+      border: 4px solid color.$error-100;
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+      opacity: 0.5;
+      color: color.$error-300;
+    }
+  }
+
+  &.before {
+    padding: space.$s2-l space.$s2 + space.$s2 space.$s2-l space.$s2 + space.$s2;
+
+    .icon {
+      margin-right: space.$s2;
+    }
+  }
+
+  &.after {
+    padding: space.$s2-l space.$s2 + space.$s2 space.$s2-l space.$s2 + space.$s2;
+    flex-direction: row-reverse;
+
+    .icon {
+      margin-left: space.$s2;
+    }
+  }
+
+  &.only {
+    padding: 10px;
+    justify-content: center;
+
+    .icon {
+      margin: 0;
+    }
+  }
+}
