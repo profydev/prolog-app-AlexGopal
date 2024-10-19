@@ -1,5 +1,24 @@
-.input {
+.checkboxWrapper {
   display: inline-flex;
-  justify-content: center;
   align-items: center;
+}
+
+.sm {
+  gap: 8px;
+
+  // width: 20px;
+  // height: 20px;
+}
+
+.md {
+  gap: 12px;
+}
+
+.input {
+  vertical-align: middle; // Aligns checkbox to the middle of the label text
+}
+
+.label {
+  font-size: 14px; // Adjust as necessary for your design
+  line-height: 1.5; // Ensures label has a proper line height
 }

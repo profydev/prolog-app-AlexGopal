@@ -9,7 +9,7 @@ export default {
     size: {
       control: {
         type: "select",
-        options: ["sm", "md", "lg", "xlg"], // Directly using string literal types
+        options: ["sm", "md"], // Directly using string literal types
       },
     },
     state: {

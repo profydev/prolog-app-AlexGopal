@@ -24,7 +24,7 @@ export function Checkbox({
   }, [state]);
 
   return (
-    <div>
+    <div className={`${styles.checkboxWrapper} ${styles[size]}`}>
       <input
         type="checkbox"
         id="checkbox"
@@ -33,9 +33,12 @@ export function Checkbox({
         checked={state === "checked"}
         ref={checkboxRef}
         onChange={onChange}
-        className={`${styles.input} ${styles[size]}`}
+        className={`${styles.input}`}
+        // className={`${styles.input}`}
       />
-      <label htmlFor="checkbox">Label</label>
+      <label htmlFor="checkbox" className={styles.label}>
+        Label
+      </label>
     </div>
   );
 }
