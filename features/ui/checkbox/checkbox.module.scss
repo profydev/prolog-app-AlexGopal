@@ -1,24 +1,189 @@
+// @use "@styles/color";
+// @use "@styles/space";
+// @use "@styles/font";
+
+// .checkboxWrapper {
+//     display: inline-flex;
+//     align-items: center;
+// }
+
+// .input {
+//     vertical-align: middle; // Aligns checkbox to the middle of the label text
+// }
+
+// .sm {
+//     gap: space.$s2;
+
+//     .label {
+//         font: font.$text-sm-medium;
+//     }
+
+//     // .input {
+//     //     // display: flex;
+//     //     // justify-content: center;
+//     //     // align-items: center;
+//     //     // width: 16px;
+//     //     // height: 16px;
+//     //     // padding: 2px;
+//     //     // border-radius: 4px;
+//     //     // border: 1px solid var(--Primary-600, #7F56D9);
+//     //     // background: var(--Primary-50, #F9F5FF);
+//     //     // accent-color: #af11df;
+//     //     display: flex;
+//     //     justify-content: center;
+//     //     align-items: center;
+//     //     width: 16px;
+//     //     height: 16px;
+//     //     padding: 2px;
+//     //     border-radius: 4px;
+//     //     border: 1px solid var(--Primary-600, #7F56D9); /* Purple border */
+//     //     background-color: white; /* White background when unchecked */
+//     //     accent-color: #7F56D9; /* Purple checkmark when checked */
+//     // }
+
+//     .input {
+//         width: space.$s4;
+//         height: space.$s4;
+//         padding: space.$s0-l;
+//         border-radius: space.$s1;
+//         // border: 1px solid var(--Primary-600, #7F56D9); /* Purple border */
+//         // background-color: white; /* White background when unchecked */
+//         border: space.$s0-m solid color.$secondary-600; /* Purple border */
+//         background-color: color.$primary-75; /* White background when unchecked */
+//         appearance: none; /* Remove the default checkmark */
+//         // display: flex;
+//         // justify-content: center;
+//         // align-items: center;
+//         cursor: pointer; /* Pointer to indicate it’s clickable */
+//     }
+
+//     .input:checked {
+//         background-color: color.$primary-75; /* Ensure the background remains white */
+//         background-image: url('/icons/check.svg'); /* Your custom checkmark image */
+//         background-repeat: no-repeat;
+//         background-position: center;
+//         background-size: contain; /* Adjust the size if needed */
+//         border: space.$s0-m solid color.$secondary-600; /* Keeps the purple border */
+//     }
+
+//     .input:indeterminate {
+//         background-color: color.$primary-75; /* Light purple background for indeterminate */
+//         background-image: url('/icons/minus.svg'); /* Add your purple slash image */
+//         background-repeat: no-repeat;
+//         background-position: center;
+//         background-size: contain; /* Make sure the slash fits well */
+//         border: space.$s0-m solid color.$secondary-600; /* Keeps the purple border */
+//     }
+// }
+
+// .md {
+//     gap: space.$s3;
+
+//     .label {
+//         font: font.$text-md-medium;
+//     }
+
+//     .input {
+//         width: space.$s5;
+//         height: space.$s5;
+//         padding: space.$s1-s;
+//         border-radius: space.$s1-l;
+//         // border: 1px solid var(--Primary-600, #7F56D9); /* Purple border */
+//         // background-color: white; /* White background when unchecked */
+//         border: space.$s0-m solid color.$secondary-600; /* Purple border */
+//         background-color: color.$primary-75; /* White background when unchecked */
+//         appearance: none; /* Remove the default checkmark */
+//         // display: flex;
+//         // justify-content: center;
+//         // align-items: center;
+//         cursor: pointer; /* Pointer to indicate it’s clickable */
+//     }
+
+//     .input:checked {
+//         background-color: color.$primary-75; /* Ensure the background remains white */
+//         background-image: url('/icons/check.svg'); /* Your custom checkmark image */
+//         background-repeat: no-repeat;
+//         background-position: center;
+//         background-size: contain; /* Adjust the size if needed */
+//         border: space.$s0-m solid color.$secondary-600; /* Keeps the purple border */
+//     }
+
+//     .input:indeterminate {
+//         background-color: color.$primary-75; /* Light purple background for indeterminate */
+//         background-image: url('/icons/minus.svg'); /* Add your purple slash image */
+//         background-repeat: no-repeat;
+//         background-position: center;
+//         background-size: contain; /* Make sure the slash fits well */
+//         border: space.$s0-m solid color.$secondary-600; /* Keeps the purple border */
+//     }
+// }
+
+// // .label {
+// //     font-size: 14px; // Adjust as necessary for your design
+// //     line-height: 1.5; // Ensures label has a proper line height
+// // }
+
+@use "@styles/color";
+@use "@styles/space";
+@use "@styles/font";
+
 .checkboxWrapper {
   display: inline-flex;
   align-items: center;
 }
 
-.sm {
-  gap: 8px;
+.input {
+  vertical-align: middle; // Aligns checkbox to the middle of the label text /* Purple border */ /* White background when unchecked */ /* Remove the default checkmark */ /* Pointer to indicate it’s clickable */
+  border: space.$s0-m solid color.$secondary-600; /* Purple border */
+  background-color: color.$primary-75; /* White background when unchecked */
+  appearance: none; /* Remove the default checkmark */
+  cursor: pointer; /* Pointer to indicate it’s clickable */
+}
 
-  // width: 20px;
-  // height: 20px;
+.input:checked {
+  // background-color: color.$primary-75; /* Ensure the background remains white */
+  background-image: url("/icons/check.svg"); /* Your custom checkmark image */
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain; /* Adjust the size if needed */
+  // border: space.$s0-m solid color.$secondary-600; /* Keeps the purple border */
+}
+
+.input:indeterminate {
+  // background-color: color.$primary-75; /* Light purple background for indeterminate */
+  background-image: url("/icons/minus.svg"); /* Add your purple slash image */
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain; /* Make sure the slash fits well */
+  // border: space.$s0-m solid color.$secondary-600; /* Keeps the purple border */
+}
+
+.sm {
+  gap: space.$s2;
+
+  .label {
+    font: font.$text-sm-medium;
+  }
+
+  .input {
+    width: space.$s4;
+    height: space.$s4;
+    padding: space.$s0-l;
+    border-radius: space.$s1;
+  }
 }
 
 .md {
-  gap: 12px;
-}
+  gap: space.$s3;
 
-.input {
-  vertical-align: middle; // Aligns checkbox to the middle of the label text
-}
+  .label {
+    font: font.$text-md-medium;
+  }
 
-.label {
-  font-size: 14px; // Adjust as necessary for your design
-  line-height: 1.5; // Ensures label has a proper line height
+  .input {
+    width: space.$s5;
+    height: space.$s5;
+    padding: space.$s1-s;
+    border-radius: space.$s1-l;
+  }
 }
