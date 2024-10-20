@@ -18,6 +18,9 @@ export default {
         options: ["checked", "unchecked", "indeterminate"], // Directly using string literal types
       },
     },
+    disabled: {
+      control: "boolean",
+    },
   },
 } as Meta<typeof Checkbox>;
 
@@ -31,4 +34,5 @@ export const Default = Template.bind({});
 Default.args = {
   size: "sm", // Using string literal values directly
   state: "checked",
+  disabled: false,
 };

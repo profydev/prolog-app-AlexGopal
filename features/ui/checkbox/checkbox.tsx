@@ -7,12 +7,14 @@ export type CheckboxState = "checked" | "unchecked" | "indeterminate";
 type CheckboxProps = {
   size?: CheckboxSize;
   state?: CheckboxState;
+  disabled?: boolean;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
 export function Checkbox({
   size = "sm",
   state = "checked",
+  disabled = false,
   onChange,
 }: CheckboxProps) {
   const checkboxRef = useRef<HTMLInputElement>(null);
@@ -23,16 +25,26 @@ export function Checkbox({
     }
   }, [state]);
 
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    // Prevent any change in the indeterminate state
+    if (state === "indeterminate") {
+      event.preventDefault(); // Prevent the checkbox from toggling
+    } else if (onChange) {
+      onChange(event); // Call the onChange handler for other states
+    }
+  };
+
   return (
     <div className={`${styles.checkboxWrapper} ${styles[size]}`}>
       <input
         type="checkbox"
         id="checkbox"
         name="checkmarkbox"
-        value="Bike"
+        value="check"
         checked={state === "checked"}
         ref={checkboxRef}
-        onChange={onChange}
+        disabled={disabled}
+        onChange={handleChange}
         className={`${styles.input}`}
         // className={`${styles.input}`}
       />
