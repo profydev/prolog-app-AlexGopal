@@ -103,6 +103,9 @@
 
 name: CI
 
+env:
+  NEXT_PUBLIC_API_BASE_URL: ${{ secrets.NEXT_PUBLIC_API_BASE_URL }} # New environment variable
+
 on:
   push:
     branches: [main]
