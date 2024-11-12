@@ -66,42 +66,36 @@ import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/router";
 import { PageContainer } from "@features/layout";
 import { IssueList } from "@features/issues";
-import { Input } from "@features/ui"; // Updated import
+import { Input } from "@features/ui";
 import type { NextPage } from "next";
 
 const IssuesPage: NextPage = () => {
   const router = useRouter();
   const { name } = router.query;
 
-  // Initialize searchTerm with name from the URL query if present
   const [searchTerm, setSearchTerm] = useState(
-    typeof name === "string" ? name : "",
+    typeof name === "string" ? decodeURIComponent(name) : "",
   );
 
-  // Reference for debounce timeout
   const searchTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Sync URL query parameter and searchTerm state on load or URL change
   useEffect(() => {
     if (typeof name === "string") {
-      setSearchTerm(name);
+      setSearchTerm(decodeURIComponent(name));
     }
   }, [name]);
 
-  // Handle search input changes with debouncing and URL update
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newSearchTerm = event.target.value;
     setSearchTerm(newSearchTerm);
 
-    // Clear existing timeout if any
     if (searchTimeoutRef.current) clearTimeout(searchTimeoutRef.current);
 
-    // Set a new timeout to debounce the URL update
     searchTimeoutRef.current = setTimeout(() => {
       router.push(
         {
-          pathname: "/dashboard/issues", // Ensure this path is correct
-          query: { ...router.query, name: newSearchTerm },
+          pathname: "/dashboard/issues",
+          query: { ...router.query, name: newSearchTerm }, // Avoid encoding here
         },
         undefined,
         { shallow: true },
@@ -120,7 +114,6 @@ const IssuesPage: NextPage = () => {
         value={searchTerm}
         onChange={handleSearchChange}
       />
-      {/* Pass only searchTerm to IssueList */}
       <IssueList searchTerm={searchTerm} />
     </PageContainer>
   );
