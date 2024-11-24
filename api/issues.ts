@@ -1,21 +1,21 @@
-import { axios } from "./axios";
-import type { Issue } from "./issues.types";
-import type { Page } from "@typings/page.types";
+// import { axios } from "./axios";
+// import type { Issue } from "./issues.types";
+// import type { Page } from "@typings/page.types";
 
-const ENDPOINT = "/issue";
-const PAGE_LIMIT = 10; // For the default view, only fetch 10 items per page
+// const ENDPOINT = "/issue";
+// const PAGE_LIMIT = 10; // For the default view, only fetch 10 items per page
 
-// Fetches paginated issues for specific page (default view)
-export async function getIssues(
-  page: number,
-  options?: { signal?: AbortSignal },
-) {
-  const { data } = await axios.get<Page<Issue>>(ENDPOINT, {
-    params: { page, limit: PAGE_LIMIT },
-    ...options,
-  });
-  return data;
-}
+// // Fetches paginated issues for specific page (default view)
+// export async function getIssues(
+//   page: number,
+//   options?: { signal?: AbortSignal },
+// ) {
+//   const { data } = await axios.get<Page<Issue>>(ENDPOINT, {
+//     params: { page, limit: PAGE_LIMIT },
+//     ...options,
+//   });
+//   return data;
+// }
 
 // Fetches all issues across multiple pages for filtering (filtered view)
 export async function getAllIssues(options?: { signal?: AbortSignal }) {
@@ -46,4 +46,51 @@ export async function getAllIssues(options?: { signal?: AbortSignal }) {
       hasNextPage: false,
     },
   };
+}
+
+import { axios } from "./axios";
+import type { Issue } from "./issues.types";
+import type { Page } from "@typings/page.types";
+import { statusMapping } from "../features/issues/api/use-get-issues";
+
+const ENDPOINT = "/issue";
+const PAGE_LIMIT = 10; // For the default view, only fetch 10 items per page
+
+// Fetches paginated issues for a specific page
+export async function getIssues(
+  page: number,
+  options?: { signal?: AbortSignal },
+  searchTerm?: string,
+  status?: string,
+) {
+  // so this is the inital params object
+  const params: Record<string, string | number> = {
+    page,
+    limit: PAGE_LIMIT,
+  };
+
+  // apprently in javascript you can add  propties to a nobject dynamically by using the syntax
+  // object.propertyName = value which is like doing
+  // object["propertyName"] = value
+  // If searchTerm or status is defined (not undefined, null, or false),
+  // these lines dynamically create the searchTerm and status properties in the params object.
+
+  if (searchTerm) params.searchTerm = searchTerm;
+  if (status) params.status = statusMapping[status];
+
+  const { data } = await axios.get<Page<Issue>>(ENDPOINT, {
+    params,
+    ...options,
+  });
+
+  /*
+  if searchTerm and status are provided params wil look like this as an exmaple
+  params = {
+  page: 1,
+  limit: 10,
+  searchTerm: "error",
+  status: "resolved",
+  };
+  */
+  return data;
 }
