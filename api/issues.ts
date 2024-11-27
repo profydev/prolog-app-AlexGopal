@@ -1,23 +1,3 @@
-// import { axios } from "./axios";
-// import type { Issue } from "./issues.types";
-// import type { Page } from "@typings/page.types";
-
-// const ENDPOINT = "/issue";
-// const PAGE_LIMIT = 10; // For the default view, only fetch 10 items per page
-
-// // Fetches paginated issues for specific page (default view)
-// export async function getIssues(
-//   page: number,
-//   options?: { signal?: AbortSignal },
-// ) {
-//   const { data } = await axios.get<Page<Issue>>(ENDPOINT, {
-//     params: { page, limit: PAGE_LIMIT },
-//     ...options,
-//   });
-//   return data;
-// }
-
-// Fetches all issues across multiple pages for filtering (filtered view)
 export async function getAllIssues(options?: { signal?: AbortSignal }) {
   let allItems: Issue[] = [];
   let currentPage = 1;
@@ -62,6 +42,7 @@ export async function getIssues(
   options?: { signal?: AbortSignal },
   searchTerm?: string,
   status?: string,
+  level?: string,
 ) {
   // so this is the inital params object
   const params: Record<string, string | number> = {
@@ -77,6 +58,7 @@ export async function getIssues(
 
   if (searchTerm) params.searchTerm = searchTerm;
   if (status) params.status = statusMapping[status];
+  if (level) params.level = level; // Add level to query
 
   const { data } = await axios.get<Page<Issue>>(ENDPOINT, {
     params,
