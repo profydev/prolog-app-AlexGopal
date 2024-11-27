@@ -93,6 +93,7 @@ const IssuesPage: NextPage = () => {
           { label: "Info", value: "info" },
         ]}
         onChange={(value) => {
+          console.log("Level changed to:", value); // Add this
           const level = typeof value === "string" ? value : undefined; // Ensure `level` is a valid string
           const newQuery = {
             ...router.query,

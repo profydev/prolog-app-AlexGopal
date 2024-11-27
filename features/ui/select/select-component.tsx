@@ -121,7 +121,7 @@ export function SelectComponent({
 
   return (
     <div className={styles.container}>
-      <FormControl style={{ width: "15%" }}>
+      <FormControl style={{ width: "25%" }}>
         <InputLabel id={`${label}-select-label`}>{label}</InputLabel>
         <Select
           labelId={`${label}-select-label`}

@@ -1,49 +1,3 @@
-// import { useQuery } from "@tanstack/react-query";
-// import { getAllIssues, getIssues } from "@api/issues";
-// import type { Page } from "@typings/page.types";
-// import type { Issue } from "@api/issues.types";
-
-// export function useGetIssues(page: number, searchTerm?: string) {
-//   // Use the correct API call depending on whether a search term is provided
-//   const queryKey = searchTerm
-//     ? ["issues", "all", searchTerm]
-//     : ["issues", page];
-//   const fetchData = searchTerm
-//     ? () => getAllIssues() // Full database fetch if search term exists
-//     : (options: { signal?: AbortSignal }) => getIssues(page, options); // Paginated fetch if no search term
-
-//   // Trigger the API call with the appropriate fetch function
-//   const query = useQuery<Page<Issue>, Error>(
-//     queryKey,
-//     ({ signal }) => fetchData({ signal }),
-//     {
-//       keepPreviousData: true,
-//       enabled: page === 1 || !searchTerm, // Only trigger on page 1 when a search term is used
-//     },
-//   );
-
-//   const items = query.data?.items || [];
-
-//   // Filter items on the client if a search term is present
-//   const filteredItems = searchTerm
-//     ? items.filter((issue) =>
-//         `${issue.name} ${issue.message}`
-//           .toLowerCase()
-//           .includes(searchTerm.toLowerCase()),
-//       )
-//     : items;
-
-//   const totalPages = searchTerm
-//     ? Math.ceil(filteredItems.length / 10) // Total pages for filtered items
-//     : query.data?.meta?.totalPages || 1;
-
-//   return {
-//     data: { items: filteredItems, meta: { totalPages } },
-//     isLoading: query.isLoading,
-//     isError: query.isError,
-//   };
-// }
-
 import { useQuery } from "@tanstack/react-query";
 import { getAllIssues, getIssues } from "@api/issues";
 import type { Page } from "@typings/page.types";
@@ -63,17 +17,19 @@ export function useGetIssues(
   page: number,
   searchTerm?: string,
   status?: string,
+  level?: string,
 ) {
-  console.log("useGetIssues - page:", page);
-  console.log("useGetIssues - searchTerm:", searchTerm);
-  console.log("useGetIssues - status (user-facing):", status);
-
+  // console.log("useGetIssues - page:", page);
+  // console.log("useGetIssues - searchTerm:", searchTerm);
+  // console.log("useGetIssues - status (user-facing):", status);
+  console.log("useGetIssues - level:", level);
   const queryKey =
-    searchTerm || status
-      ? ["issues", "all", searchTerm, status]
+    searchTerm || status || level
+      ? ["issues", "all", searchTerm, status, level]
       : ["issues", page];
+  console.log("useGetIssues - queryKey:", queryKey);
   const fetchData =
-    searchTerm || status
+    searchTerm || status || level
       ? () => getAllIssues() // Fetch all items for filtering
       : (options: { signal?: AbortSignal }) => getIssues(page, options); // Paginated fetch for default view
 
@@ -84,11 +40,11 @@ export function useGetIssues(
   );
 
   const items = query.data?.items || [];
-  console.log("Fetched items (non-filtered):", items);
+  // console.log("Fetched items (non-filtered):", items);
 
   // Only filter if searchTerm or status is active
   const filteredItems =
-    searchTerm || status
+    searchTerm || status || level
       ? items.filter((issue) => {
           const matchesSearch =
             !searchTerm ||
@@ -98,7 +54,8 @@ export function useGetIssues(
           const mappedStatus = reverseStatusMapping[issue.status];
           const matchesStatus =
             !status || mappedStatus === reverseStatusMapping[status];
-          return matchesSearch && matchesStatus;
+          const matchesLevel = !level || issue.level === level;
+          return matchesSearch && matchesStatus && matchesLevel;
         })
       : items;
 
@@ -107,8 +64,8 @@ export function useGetIssues(
       ? Math.ceil(filteredItems.length / 10)
       : query.data?.meta?.totalPages || 1;
 
-  console.log("Filtered items count:", filteredItems.length);
-  console.log("Total pages:", totalPages);
+  // console.log("Filtered items count:", filteredItems.length);
+  // console.log("Total pages:", totalPages);
 
   return {
     data: { items: filteredItems, meta: { totalPages } },

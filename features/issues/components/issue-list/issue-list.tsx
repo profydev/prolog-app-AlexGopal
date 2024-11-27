@@ -12,21 +12,22 @@ type IssueListProps = {
   level?: string; // Add this line
 };
 
-export function IssueList({ searchTerm, status }: IssueListProps) {
+export function IssueList({ searchTerm, status, level }: IssueListProps) {
   const router = useRouter();
   const [localPage, setLocalPage] = useState(1);
   const page = Number(router.query.page || 1);
-  const isFiltered = Boolean(searchTerm || status);
+  const isFiltered = Boolean(searchTerm || status || level);
 
-  console.log("IssueList - searchTerm:", searchTerm);
-  console.log("IssueList - status:", status);
-  console.log("IssueList - isFiltered:", isFiltered);
+  // console.log("IssueList - searchTerm:", searchTerm);
+  // console.log("IssueList - status:", status);
+  // console.log("IssueList - isFiltered:", isFiltered);
 
   // Fetch issues, applying filters
   const { data, isLoading, isError } = useGetIssues(
     isFiltered ? 1 : page,
     searchTerm,
     status, // Pass the status to the hook
+    level,
   );
   const projects = useGetProjects();
 
@@ -78,9 +79,9 @@ export function IssueList({ searchTerm, status }: IssueListProps) {
   const currentPage = isFiltered ? localPage : page;
   const totalPages = isFiltered ? totalFilteredPages : meta?.totalPages || 1;
 
-  console.log("Current page:", currentPage);
-  console.log("Total pages:", totalPages);
-  console.log("Paginated items:", paginatedItems);
+  // console.log("Current page:", currentPage);
+  // console.log("Total pages:", totalPages);
+  // console.log("Paginated items:", paginatedItems);
 
   const navigateToPage = (newPage: number) => {
     if (isFiltered) {
