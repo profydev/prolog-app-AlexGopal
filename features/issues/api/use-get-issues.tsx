@@ -1,33 +1,72 @@
-import { useEffect } from "react";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { getIssues } from "@api/issues";
+import { useQuery } from "@tanstack/react-query";
+import { getAllIssues, getIssues } from "@api/issues";
 import type { Page } from "@typings/page.types";
 import type { Issue } from "@api/issues.types";
 
-const QUERY_KEY = "issues";
+export const statusMapping: Record<string, string> = {
+  resolved: "resolved", // User-facing "Resolved" maps to API "resolved"
+  unresolved: "open", // User-facing "Unresolved" maps to API "open"
+};
 
-export function getQueryKey(page?: number) {
-  if (page === undefined) {
-    return [QUERY_KEY];
-  }
-  return [QUERY_KEY, page];
-}
+export const reverseStatusMapping: Record<string, string> = {
+  resolved: "resolved", // API "resolved" maps back to "Resolved"
+  open: "unresolved", // API "open" maps back to "Unresolved"
+};
 
-export function useGetIssues(page: number) {
+export function useGetIssues(
+  page: number,
+  searchTerm?: string,
+  status?: string,
+  level?: string,
+) {
+  // console.log("useGetIssues - level:", level);
+  const queryKey =
+    searchTerm || status || level
+      ? ["issues", "all", searchTerm, status, level]
+      : ["issues", page];
+  // console.log("useGetIssues - queryKey:", queryKey);
+  const fetchData =
+    searchTerm || status || level
+      ? () => getAllIssues() // Fetch all items for filtering
+      : (options: { signal?: AbortSignal }) => getIssues(page, options); // Paginated fetch for default view
+
   const query = useQuery<Page<Issue>, Error>(
-    getQueryKey(page),
-    ({ signal }) => getIssues(page, { signal }),
+    queryKey,
+    ({ signal }) => fetchData({ signal }),
     { keepPreviousData: true },
   );
 
-  // Prefetch the next page!
-  const queryClient = useQueryClient();
-  useEffect(() => {
-    if (query.data?.meta.hasNextPage) {
-      queryClient.prefetchQuery(getQueryKey(page + 1), ({ signal }) =>
-        getIssues(page + 1, { signal }),
-      );
-    }
-  }, [query.data, page, queryClient]);
-  return query;
+  const items = query.data?.items || [];
+  // console.log("Fetched items (non-filtered):", items);
+
+  // Only filter if searchTerm or status is active
+  const filteredItems =
+    searchTerm || status || level
+      ? items.filter((issue) => {
+          const matchesSearch =
+            !searchTerm ||
+            `${issue.name} ${issue.message}`
+              .toLowerCase()
+              .includes(searchTerm.toLowerCase());
+          const mappedStatus = reverseStatusMapping[issue.status];
+          const matchesStatus =
+            !status || mappedStatus === reverseStatusMapping[status];
+          const matchesLevel = !level || issue.level === level;
+          return matchesSearch && matchesStatus && matchesLevel;
+        })
+      : items;
+
+  const totalPages =
+    searchTerm || status
+      ? Math.ceil(filteredItems.length / 10)
+      : query.data?.meta?.totalPages || 1;
+
+  // console.log("Filtered items count:", filteredItems.length);
+  // console.log("Total pages:", totalPages);
+
+  return {
+    data: { items: filteredItems, meta: { totalPages } },
+    isLoading: query.isLoading,
+    isError: query.isError,
+  };
 }
