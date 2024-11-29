@@ -5,6 +5,7 @@ import { IssueList } from "@features/issues";
 import { Input } from "@features/ui";
 import { SelectComponent } from "@features/ui";
 import type { NextPage } from "next";
+import styles from "./issues.module.scss";
 
 const IssuesPage: NextPage = () => {
   const router = useRouter();
@@ -57,62 +58,64 @@ const IssuesPage: NextPage = () => {
       title="Issues"
       info="Overview of errors, warnings, and events logged from your projects."
     >
-      <SelectComponent
-        label="Status"
-        value={
-          Array.isArray(router.query.status)
-            ? router.query.status[0]
-            : router.query.status || ""
-        }
-        options={[
-          { label: "All", value: "" }, // No filtering
-          { label: "Resolved", value: "resolved" }, // Maps to API's "resolved"
-          { label: "Unresolved", value: "open" }, // Maps to API's "open"
-        ]}
-        onChange={(value) => {
-          const status = typeof value === "string" ? value : undefined; // Ensure `status` is a valid string
-          const newQuery = {
-            ...router.query,
-            status, // Add or remove the `status` filter
-          };
+      <div className={styles.filterControls}>
+        <SelectComponent
+          label="Status"
+          value={
+            Array.isArray(router.query.status)
+              ? router.query.status[0]
+              : router.query.status || ""
+          }
+          options={[
+            { label: "All", value: "" }, // No filtering
+            { label: "Resolved", value: "resolved" }, // Maps to API's "resolved"
+            { label: "Unresolved", value: "open" }, // Maps to API's "open"
+          ]}
+          onChange={(value) => {
+            const status = typeof value === "string" ? value : undefined; // Ensure `status` is a valid string
+            const newQuery = {
+              ...router.query,
+              status, // Add or remove the `status` filter
+            };
 
-          // Update the URL with the new query parameters
-          router.push({
-            pathname: router.pathname,
-            query: newQuery,
-          });
-        }}
-      />
-      <SelectComponent
-        label="Level"
-        value={(router.query.level as string) || ""}
-        options={[
-          { label: "All", value: "" },
-          { label: "Error", value: "error" },
-          { label: "Warning", value: "warning" },
-          { label: "Info", value: "info" },
-        ]}
-        onChange={(value) => {
-          console.log("Level changed to:", value); // Add this
-          const level = typeof value === "string" ? value : undefined; // Ensure `level` is a valid string
-          const newQuery = {
-            ...router.query,
-            level, // Add or remove the `level` filter
-          };
+            // Update the URL with the new query parameters
+            router.push({
+              pathname: router.pathname,
+              query: newQuery,
+            });
+          }}
+        />
+        <SelectComponent
+          label="Level"
+          value={(router.query.level as string) || ""}
+          options={[
+            { label: "All", value: "" },
+            { label: "Error", value: "error" },
+            { label: "Warning", value: "warning" },
+            { label: "Info", value: "info" },
+          ]}
+          onChange={(value) => {
+            // console.log("Level changed to:", value); // Add this
+            const level = typeof value === "string" ? value : undefined; // Ensure `level` is a valid string
+            const newQuery = {
+              ...router.query,
+              level, // Add or remove the `level` filter
+            };
 
-          // Update the URL with the new query parameters
-          router.push({
-            pathname: router.pathname,
-            query: newQuery,
-          });
-        }}
-      />
-      <Input
-        label="Search issues"
-        variant="outlined"
-        value={searchTerm}
-        onChange={handleSearchChange}
-      />
+            // Update the URL with the new query parameters
+            router.push({
+              pathname: router.pathname,
+              query: newQuery,
+            });
+          }}
+        />
+        <Input
+          label="Search issues"
+          variant="outlined"
+          value={searchTerm}
+          onChange={handleSearchChange}
+        />
+      </div>
       <IssueList
         searchTerm={searchTerm}
         status={

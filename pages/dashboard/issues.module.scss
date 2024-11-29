@@ -1,0 +1,7 @@
+.filterControls {
+  display: flex; /* Activate flexbox */
+  flex-direction: row; /* Arrange items in a row (default, but explicit here) */
+  gap: 16px; /* Add space between items */
+  align-items: center; /* Vertically align items to the center */
+  justify-content: flex-end; /* Align items to the left (default) */
+}

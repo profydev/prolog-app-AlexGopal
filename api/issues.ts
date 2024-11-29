@@ -45,8 +45,8 @@ export async function getIssues(
   level?: string,
 ) {
   // so this is the inital params object
-  console.log("getIssues - received level:", level); // Add this
-  console.log("getIssues function called"); // Add this
+  // console.log("getIssues - received level:", level); // Add this
+  // console.log("getIssues function called"); // Add this
   const params: Record<string, string | number> = {
     page,
     limit: PAGE_LIMIT,
@@ -60,10 +60,10 @@ export async function getIssues(
 
   if (searchTerm) params.searchTerm = searchTerm;
   if (status) params.status = statusMapping[status];
-  console.log("getIssues - level:", level);
+  // console.log("getIssues - level:", level);
   if (level) params.level = level; // Add level to query
 
-  console.log("API Request Params:", params); // Add this line to debug
+  // console.log("API Request Params:", params); // Add this line to debug
 
   const { data } = await axios.get<Page<Issue>>(ENDPOINT, {
     params,

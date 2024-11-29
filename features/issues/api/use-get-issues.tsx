@@ -19,15 +19,12 @@ export function useGetIssues(
   status?: string,
   level?: string,
 ) {
-  // console.log("useGetIssues - page:", page);
-  // console.log("useGetIssues - searchTerm:", searchTerm);
-  // console.log("useGetIssues - status (user-facing):", status);
-  console.log("useGetIssues - level:", level);
+  // console.log("useGetIssues - level:", level);
   const queryKey =
     searchTerm || status || level
       ? ["issues", "all", searchTerm, status, level]
       : ["issues", page];
-  console.log("useGetIssues - queryKey:", queryKey);
+  // console.log("useGetIssues - queryKey:", queryKey);
   const fetchData =
     searchTerm || status || level
       ? () => getAllIssues() // Fetch all items for filtering
