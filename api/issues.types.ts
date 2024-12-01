@@ -13,4 +13,5 @@ export type Issue = {
   level: IssueLevel;
   numEvents: number;
   numUsers: number;
+  status: "resolved" | "unresolved"; // Add this if missing
 };
