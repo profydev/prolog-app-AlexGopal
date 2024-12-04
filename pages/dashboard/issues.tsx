@@ -9,7 +9,9 @@ import styles from "./issues.module.scss";
 
 const IssuesPage: NextPage = () => {
   const router = useRouter();
-  const { name } = router.query;
+  const { name, projectId } = router.query;
+
+  console.log("Extracted projectId from query:", projectId); // Log projectId
 
   const [searchTerm, setSearchTerm] = useState(
     typeof name === "string" ? decodeURIComponent(name) : "",
@@ -128,6 +130,11 @@ const IssuesPage: NextPage = () => {
             ? router.query.level[0]
             : router.query.level || ""
         }
+        // we just cast proejctId as a string for saftey
+        // from earlier in our code we already know all query parameter values can be
+        // string | string[] | undefined
+        // see the select component
+        projectId={projectId as string}
       />
     </PageContainer>
   );
