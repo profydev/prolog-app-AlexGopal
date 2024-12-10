@@ -44,7 +44,11 @@ describe("Project List", () => {
           //<Badge color={statusColors[statusMap[status]]}>{capitalize(statusMap[status])}
           cy.wrap($el)
             .find("a")
-            .should("have.attr", "href", "/dashboard/issues");
+            .should(
+              "have.attr",
+              "href",
+              `/dashboard/issues?projectId=${mockProjects[index].id}`,
+            );
         });
     });
 
@@ -121,7 +125,6 @@ describe("Project List", () => {
         warning: "warning",
         info: "stable",
       };
-
       // get all project cards
       cy.get("main")
         .find("li")
@@ -137,8 +140,84 @@ describe("Project List", () => {
           //<Badge color={statusColors[statusMap[status]]}>{capitalize(statusMap[status])}
           cy.wrap($el)
             .find("a")
-            .should("have.attr", "href", "/dashboard/issues");
+            .should(
+              "have.attr",
+              "href",
+              `/dashboard/issues?projectId=${mockProjects[index].id}`,
+            );
         });
+    });
+
+    // this is the same version of the test under but just for the first project card, in other words
+    // it is not dynamic
+    // it("navigates to the issues page with the correct projectId", () => {
+    //   const firstProject = mockProjects[0]; // Assuming projects.json is correctly mocked
+    //   const { id, name } = firstProject;
+
+    //   cy.get("main")
+    //   .find("li")
+    //   .first()
+    //   .find("div.project-card_container__EPgC0")
+    //   .find("a")
+    //   .should("exist")
+    //   .and("have.attr", "href", `/dashboard/issues?projectId=${id}`)
+    //   .click();
+    // // Verify that the URL includes the correct projectId
+    //   cy.url().should("include", `/dashboard/issues?projectId=${id}`);
+    //  });
+
+    it("navigates to the issues page with the correct projectId for all projects", () => {
+      const languageNames = ["React", "Node.js", "Python"];
+      const statusMap = {
+        error: "critical",
+        warning: "warning",
+        info: "stable",
+      };
+
+      // Iterate through mock projects manually
+      // so i cant copy my error test because if we do the each for the project information
+      // when we go to another project it will fail because the page will reload and the previous dom elements are lost
+      // each is for dom elements, foreach is for array elements, each is for a command chain, foreach is independent
+      /*
+    Cypress each: Use when iterating over DOM elements and performing Cypress commands within a single-page context.
+    JavaScript forEach or for: Use when iterating over an array of data or when navigation or page reloads occur during iteration.
+    */
+      mockProjects.forEach((project, index) => {
+        const { id, name, numIssues, numEvents24h, status } = project;
+
+        // Visit the dashboard page
+        cy.visit("http://localhost:3000/dashboard");
+        cy.wait("@getProjects");
+
+        // Validate the project card data
+        cy.get("main")
+          .find("li")
+          .eq(index)
+          .within(() => {
+            cy.contains(name);
+            cy.contains(languageNames[index]);
+            cy.contains(numIssues);
+            cy.contains(numEvents24h);
+            cy.contains(
+              capitalize(statusMap[status as keyof typeof statusMap]),
+            );
+          });
+
+        // Click the "View Issues" link
+        cy.get("main")
+          .find("li")
+          .eq(index)
+          .find("a")
+          .should("exist")
+          .and("have.attr", "href", `/dashboard/issues?projectId=${id}`)
+          .click();
+
+        // Validate the URL and content on the issues page
+        cy.url().should("include", `/dashboard/issues?projectId=${id}`);
+        cy.get("main")
+          .contains("Overview of errors, warnings, and events")
+          .should("exist");
+      });
     });
   });
 
@@ -205,7 +284,11 @@ describe("Project List", () => {
           //<Badge color={statusColors[statusMap[status]]}>{capitalize(statusMap[status])}
           cy.wrap($el)
             .find("a")
-            .should("have.attr", "href", "/dashboard/issues");
+            .should(
+              "have.attr",
+              "href",
+              `/dashboard/issues?projectId=${mockProjects[index].id}`,
+            );
         });
     });
   });

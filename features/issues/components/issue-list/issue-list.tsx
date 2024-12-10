@@ -10,13 +10,19 @@ type IssueListProps = {
   searchTerm?: string;
   status?: string; // New status prop
   level?: string; // Add this line
+  projectId?: string;
 };
 
-export function IssueList({ searchTerm, status, level }: IssueListProps) {
+export function IssueList({
+  searchTerm,
+  status,
+  level,
+  projectId,
+}: IssueListProps) {
   const router = useRouter();
   const [localPage, setLocalPage] = useState(1);
   const page = Number(router.query.page || 1);
-  const isFiltered = Boolean(searchTerm || status || level);
+  const isFiltered = Boolean(searchTerm || status || level || projectId);
 
   // console.log("IssueList - searchTerm:", searchTerm);
   // console.log("IssueList - status:", status);
@@ -28,6 +34,7 @@ export function IssueList({ searchTerm, status, level }: IssueListProps) {
     searchTerm,
     status, // Pass the status to the hook
     level,
+    projectId,
   );
   const projects = useGetProjects();
 
@@ -85,10 +92,10 @@ export function IssueList({ searchTerm, status, level }: IssueListProps) {
 
   const navigateToPage = (newPage: number) => {
     if (isFiltered) {
-      console.log("Updating local page:", newPage);
+      // console.log("Updating local page:", newPage);
       setLocalPage(newPage); // Update client-side page
     } else {
-      console.log("Updating query parameters for page:", newPage);
+      // console.log("Updating query parameters for page:", newPage);
       router.push({
         pathname: router.pathname,
         query: { page: newPage }, // Update query for server-side pagination
