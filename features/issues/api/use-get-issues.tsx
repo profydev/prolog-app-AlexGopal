@@ -18,39 +18,32 @@ export function useGetIssues(
   searchTerm?: string,
   status?: string,
   level?: string,
-  projectId?: string, // Add projectId as a parameter
+  projectId?: string,
 ) {
-  // console.log("Parameters passed to useGetIssues:", {
-  //   page,
-  //   searchTerm,
-  //   status,
-  //   level,
-  //   projectId,
-  // });
-  // Query Key: Determines caching and deduplication in React Query
-  const queryKey =
-    searchTerm || status || level || projectId
-      ? ["issues", "all", searchTerm, status, level, projectId] // Filtering mode
-      : ["issues", page]; // Pagination mode
+  const isFiltered = Boolean(searchTerm || status || level || projectId);
 
-  // Fetch Data: Decides whether to fetch paginated or filtered data
-  const fetchData =
-    searchTerm || status || level || projectId
-      ? () => getAllIssues() // Fetch all items for client-side filtering
-      : (options: { signal?: AbortSignal }) =>
-          getIssues(page, options, searchTerm, status, level); // Paginated fetch
+  const queryKey = isFiltered
+    ? ["issues", "all", searchTerm, status, level, projectId]
+    : ["issues", page];
 
-  // React Query Hook: Fetches and caches data
+  const fetchData = isFiltered
+    ? () => getAllIssues()
+    : (options: { signal?: AbortSignal }) =>
+        getIssues(page, options, searchTerm, status, level, projectId);
+
   const query = useQuery<Page<Issue>, Error>(
     queryKey,
-    ({ signal }) => fetchData({ signal }), // Ensure options like `signal` are passed
-    { keepPreviousData: true }, // Smooth pagination experience
+    ({ signal }) => fetchData({ signal }),
+    { keepPreviousData: true },
   );
 
-  // Items: Fetched from the API
+  // Log the received metadata and data
+  console.log("useGetIssues - Query Data:", query.data);
+  console.log("useGetIssues - Meta:", query.data?.meta);
+  console.log("useGetIssues - IsFiltered:", isFiltered);
+
   const items = query.data?.items || [];
 
-  // Client-Side Filtering: Applies filters only if needed
   const filteredItems = items.filter((issue) => {
     const matchesSearch =
       !searchTerm ||
@@ -61,20 +54,16 @@ export function useGetIssues(
       !status || issue.status === reverseStatusMapping[status];
     const matchesLevel = !level || issue.level === level;
     const matchesProject = !projectId || issue.projectId === projectId;
-    // console.log("Filtering issue:", {
-    //   issue,
-    //   matchesSearch,
-    //   matchesStatus,
-    //   matchesLevel,
-    //   matchesProject,
-    // });
-    return matchesSearch && matchesStatus && matchesLevel && matchesProject; // Include matchesProject
+
+    return matchesSearch && matchesStatus && matchesLevel && matchesProject;
   });
 
-  // Total Pages: Calculate based on filtered results
-  const totalPages = Math.ceil(filteredItems.length / 10);
+  const totalPages = isFiltered
+    ? Math.ceil(filteredItems.length / 10)
+    : // use query.data instead of meta.data or sometimes the other side of the or statement may default to 1
+      // if you dont you rely on meta from an early destructing which may cause an issue
+      query.data?.meta?.totalPages || 1;
 
-  // Return Processed Data
   return {
     data: { items: filteredItems, meta: { totalPages } },
     isLoading: query.isLoading,
