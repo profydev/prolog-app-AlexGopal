@@ -18,17 +18,18 @@ export function useGetIssues(
   searchTerm?: string,
   status?: string,
   level?: string,
+  projectId?: string,
 ) {
-  // console.log("useGetIssues - level:", level);
-  const queryKey =
-    searchTerm || status || level
-      ? ["issues", "all", searchTerm, status, level]
-      : ["issues", page];
-  // console.log("useGetIssues - queryKey:", queryKey);
-  const fetchData =
-    searchTerm || status || level
-      ? () => getAllIssues() // Fetch all items for filtering
-      : (options: { signal?: AbortSignal }) => getIssues(page, options); // Paginated fetch for default view
+  const isFiltered = Boolean(searchTerm || status || level || projectId);
+
+  const queryKey = isFiltered
+    ? ["issues", "all", searchTerm, status, level, projectId]
+    : ["issues", page];
+
+  const fetchData = isFiltered
+    ? () => getAllIssues()
+    : (options: { signal?: AbortSignal }) =>
+        getIssues(page, options, searchTerm, status, level, projectId);
 
   const query = useQuery<Page<Issue>, Error>(
     queryKey,
@@ -36,33 +37,32 @@ export function useGetIssues(
     { keepPreviousData: true },
   );
 
+  // Log the received metadata and data
+  console.log("useGetIssues - Query Data:", query.data);
+  console.log("useGetIssues - Meta:", query.data?.meta);
+  console.log("useGetIssues - IsFiltered:", isFiltered);
+
   const items = query.data?.items || [];
-  // console.log("Fetched items (non-filtered):", items);
 
-  // Only filter if searchTerm or status is active
-  const filteredItems =
-    searchTerm || status || level
-      ? items.filter((issue) => {
-          const matchesSearch =
-            !searchTerm ||
-            `${issue.name} ${issue.message}`
-              .toLowerCase()
-              .includes(searchTerm.toLowerCase());
-          const mappedStatus = reverseStatusMapping[issue.status];
-          const matchesStatus =
-            !status || mappedStatus === reverseStatusMapping[status];
-          const matchesLevel = !level || issue.level === level;
-          return matchesSearch && matchesStatus && matchesLevel;
-        })
-      : items;
+  const filteredItems = items.filter((issue) => {
+    const matchesSearch =
+      !searchTerm ||
+      `${issue.name} ${issue.message}`
+        .toLowerCase()
+        .includes(searchTerm.toLowerCase());
+    const matchesStatus =
+      !status || issue.status === reverseStatusMapping[status];
+    const matchesLevel = !level || issue.level === level;
+    const matchesProject = !projectId || issue.projectId === projectId;
 
-  const totalPages =
-    searchTerm || status
-      ? Math.ceil(filteredItems.length / 10)
-      : query.data?.meta?.totalPages || 1;
+    return matchesSearch && matchesStatus && matchesLevel && matchesProject;
+  });
 
-  // console.log("Filtered items count:", filteredItems.length);
-  // console.log("Total pages:", totalPages);
+  const totalPages = isFiltered
+    ? Math.ceil(filteredItems.length / 10)
+    : // use query.data instead of meta.data or sometimes the other side of the or statement may default to 1
+      // if you dont you rely on meta from an early destructing which may cause an issue
+      query.data?.meta?.totalPages || 1;
 
   return {
     data: { items: filteredItems, meta: { totalPages } },

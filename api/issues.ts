@@ -1,3 +1,10 @@
+import { axios } from "./axios";
+import type { Issue } from "./issues.types";
+import type { Page } from "@typings/page.types";
+
+const ENDPOINT = "/issue";
+const PAGE_LIMIT = 10; // For the default view, only fetch 10 items per page
+
 export async function getAllIssues(options?: { signal?: AbortSignal }) {
   let allItems: Issue[] = [];
   let currentPage = 1;
@@ -28,56 +35,32 @@ export async function getAllIssues(options?: { signal?: AbortSignal }) {
   };
 }
 
-import { axios } from "./axios";
-import type { Issue } from "./issues.types";
-import type { Page } from "@typings/page.types";
-import { statusMapping } from "../features/issues/api/use-get-issues";
-
-const ENDPOINT = "/issue";
-const PAGE_LIMIT = 10; // For the default view, only fetch 10 items per page
-
-// Fetches paginated issues for a specific page
 export async function getIssues(
   page: number,
   options?: { signal?: AbortSignal },
   searchTerm?: string,
   status?: string,
   level?: string,
+  projectId?: string,
 ) {
-  // so this is the inital params object
-  // console.log("getIssues - received level:", level); // Add this
-  // console.log("getIssues function called"); // Add this
   const params: Record<string, string | number> = {
     page,
     limit: PAGE_LIMIT,
   };
 
-  // apprently in javascript you can add  propties to a nobject dynamically by using the syntax
-  // object.propertyName = value which is like doing
-  // object["propertyName"] = value
-  // If searchTerm or status is defined (not undefined, null, or false),
-  // these lines dynamically create the searchTerm and status properties in the params object.
-
   if (searchTerm) params.searchTerm = searchTerm;
-  if (status) params.status = statusMapping[status];
-  // console.log("getIssues - level:", level);
-  if (level) params.level = level; // Add level to query
-
-  // console.log("API Request Params:", params); // Add this line to debug
+  if (status) params.status = status;
+  if (level) params.level = level;
+  if (projectId) params.projectId = projectId;
 
   const { data } = await axios.get<Page<Issue>>(ENDPOINT, {
     params,
     ...options,
   });
 
-  /*
-  if searchTerm and status are provided params wil look like this as an exmaple
-  params = {
-  page: 1,
-  limit: 10,
-  searchTerm: "error",
-  status: "resolved",
-  };
-  */
+  // Debugging metadata and items
+  console.log("API Response Meta:", data.meta);
+  console.log("Fetched Items:", data.items);
+
   return data;
 }

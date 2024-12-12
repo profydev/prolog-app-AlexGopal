@@ -29,7 +29,7 @@ const statusMap: { [key: string]: ProjectStatus } = {
 };
 
 export function ProjectCard({ project }: ProjectCardProps) {
-  const { name, language, numIssues, numEvents24h, status } = project;
+  const { name, language, numIssues, numEvents24h, status, id } = project;
 
   console.log(status);
   return (
@@ -64,7 +64,13 @@ export function ProjectCard({ project }: ProjectCardProps) {
         </div>
       </div>
       <div className={styles.bottomContainer}>
-        <Link href={Routes.issues} className={styles.viewIssuesAnchor}>
+        <Link
+          href={{
+            pathname: Routes.issues,
+            query: { projectId: id }, // Include projectId in the query
+          }}
+          className={styles.viewIssuesAnchor}
+        >
           View issues
         </Link>
       </div>
