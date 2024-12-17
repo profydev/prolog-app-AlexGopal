@@ -111,12 +111,14 @@ const IssuesPage: NextPage = () => {
             });
           }}
         />
-        <Input
-          label="Search issues"
-          variant="outlined"
-          value={searchTerm}
-          onChange={handleSearchChange}
-        />
+        <div className={styles.inputContainer}>
+          <Input
+            label="Search issues"
+            variant="outlined"
+            value={searchTerm}
+            onChange={handleSearchChange}
+          />
+        </div>
       </div>
       <IssueList
         searchTerm={searchTerm}

@@ -1,7 +1,24 @@
+@use "@styles/space";
+@use "@styles/breakpoint";
+
 .filterControls {
-  display: flex; /* Activate flexbox */
-  flex-direction: row; /* Arrange items in a row (default, but explicit here) */
-  gap: 16px; /* Add space between items */
-  align-items: center; /* Vertically align items to the center */
-  justify-content: flex-end; /* Align items to the left (default) */
+  display: flex;
+  flex-direction: column;
+  gap: 16px; /* Default spacing */
+  align-items: stretch;
+  width: 100%;
+  padding: 0 12px; /* Horizontal padding */
+  box-sizing: border-box;
+
+  > *:first-child {
+    margin-top: 32px; /* Space between Overview text and first Select */
+  }
+}
+
+.inputContainer {
+  margin-bottom: 24px !important; /* Force 24px below the input */
+}
+
+.tableHeader {
+  margin-top: 0 !important; /* Remove any margin added to the table header */
 }
