@@ -7,7 +7,10 @@
   gap: 16px; /* Default spacing */
   align-items: stretch;
   width: 100%;
-  padding: 0 12px; /* Horizontal padding */
+
+  // padding: 0 12px; /* Horizontal padding */
+  padding-left: 0;
+  padding-right: 0;
   box-sizing: border-box;
 
   > *:first-child {

@@ -32,8 +32,8 @@ export function SelectComponent({
     <div className={styles.container}>
       <FormControl
         sx={{
-          width: "100%", // Allow the component to stretch
-          boxSizing: "border-box", // Include padding in width calculations
+          width: "100%",
+          boxSizing: "border-box",
         }}
       >
         <InputLabel id={`${label}-select-label`}>{label}</InputLabel>
@@ -45,15 +45,7 @@ export function SelectComponent({
           label={label}
           {...props}
           sx={{
-            paddingRight: "14px", // Match the left padding, we need this because we're using mui so the components come with their own padding
-            // and we need to offset this
-            boxSizing: "border-box", // Prevent overflow by including padding in width
-            // so basically without this if we said width: 100px, and then added for example 5 px of padding
-            // on the right and left we would get 110px of width, with border-box the padding is included in the width
-            // calculation so we would still have 100px width
-            width: "100%", // Stretch to full width of parent
-            // without this the child might not stretch to the full width of the parent, it will only take up as much width
-            // as its content requires
+            padding: "0", // Remove internal padding
           }}
         >
           {options.map((option) => (
