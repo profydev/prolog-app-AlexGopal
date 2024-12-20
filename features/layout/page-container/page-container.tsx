@@ -1,7 +1,7 @@
 import Head from "next/head";
 import { SidebarNavigation } from "../sidebar-navigation";
 import { Footer } from "../../footer/footer";
-import classNames from "classnames"; // <-- Add this line
+import classNames from "classnames";
 import styles from "./page-container.module.scss";
 import { useContext } from "react";
 import { NavigationContext } from "../sidebar-navigation/navigation-context";
@@ -9,10 +9,10 @@ import { NavigationContext } from "../sidebar-navigation/navigation-context";
 type PageContainerProps = {
   children: React.ReactNode;
   title: string;
-  info: string;
+  info?: string;
 };
 
-export function PageContainer({ children, title, info }: PageContainerProps) {
+export function PageContainer({ children, title }: PageContainerProps) {
   const documentTitle = `ProLog - ${title}`;
 
   const { isSidebarCollapsed } = useContext(NavigationContext);
@@ -25,7 +25,6 @@ export function PageContainer({ children, title, info }: PageContainerProps) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      {/* Apply isCollapsed class dynamically */}
       <div
         className={classNames(
           styles.sidebar,
@@ -44,7 +43,14 @@ export function PageContainer({ children, title, info }: PageContainerProps) {
         <main className={styles.main}>
           <div className={styles.contentContainer}>
             <h1 className={styles.title}>{title}</h1>
-            <div className={styles.info}>{info}</div>
+            {/* Wrap the breakable part in a span */}
+            <div className={styles.info}>
+              Overview of errors, warnings, and events
+              <span className={styles.breakText}>
+                {" "}
+                logged from your projects.
+              </span>
+            </div>
             {children}
           </div>
         </main>

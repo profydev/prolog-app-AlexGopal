@@ -1,8 +1,8 @@
-@use "@styles/color";
-@use "@styles/font";
-@use "@styles/space";
-@use "@styles/breakpoint";
-@use "@styles/misc";
+// @use "@styles/color";
+// @use "@styles/font";
+// @use "@styles/space";
+// @use "@styles/breakpoint";
+// @use "@styles/misc";
 
 // .container {
 //   display: flex;
@@ -50,6 +50,12 @@
 //   }
 // }
 
+@use "@styles/color";
+@use "@styles/font";
+@use "@styles/space";
+@use "@styles/breakpoint";
+@use "@styles/misc";
+
 .container {
   display: flex;
   min-height: 100vh; // Full height of the viewport
@@ -95,7 +101,7 @@
   overflow: hidden;
 
   @media (min-width: breakpoint.$desktop) {
-    margin-top: 0;
+    margin-top: 0; // Remove top margin for desktop
     padding: space.$s8;
     border-top-left-radius: space.$s10;
   }
@@ -104,6 +110,22 @@
     margin-left: -30px; // Reset any left margin
     padding-left: 10px; // Add a small padding to the left side
     padding-right: 10px; // Maintain balance with right padding
+  }
+}
+
+.info {
+  font: font.$text-sm-regular; // Adjust font styling
+  line-height: 1.5;
+
+  .breakText {
+    display: inline; // Default for larger screens
+  }
+
+  @media (width <= 1023px) {
+    // Mobile view breakpoint
+    .breakText {
+      display: block; // Force text to a new line
+    }
   }
 }
 
