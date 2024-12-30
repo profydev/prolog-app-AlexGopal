@@ -9,12 +9,11 @@ import { NavigationContext } from "../sidebar-navigation/navigation-context";
 type PageContainerProps = {
   children: React.ReactNode;
   title: string;
-  info?: string;
+  info?: React.ReactNode;
 };
 
-export function PageContainer({ children, title }: PageContainerProps) {
+export function PageContainer({ children, title, info }: PageContainerProps) {
   const documentTitle = `ProLog - ${title}`;
-
   const { isSidebarCollapsed } = useContext(NavigationContext);
 
   return (
@@ -43,14 +42,7 @@ export function PageContainer({ children, title }: PageContainerProps) {
         <main className={styles.main}>
           <div className={styles.contentContainer}>
             <h1 className={styles.title}>{title}</h1>
-            {/* Wrap the breakable part in a span */}
-            <div className={styles.info}>
-              Overview of errors, warnings, and events
-              <span className={styles.breakText}>
-                {" "}
-                logged from your projects.
-              </span>
-            </div>
+            <div className={styles.info}>{info}</div>
             {children}
           </div>
         </main>

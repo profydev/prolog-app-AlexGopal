@@ -68,12 +68,12 @@
   z-index: 2;
 
   &.isCollapsed {
-    width: 83px; // Collapsed width (match with sidebar-navigation.module.scss)
+    width: 83px;
   }
 
   @media (width >= 405px) and (width <= 1023px) {
-    width: 0; // Set the width to 0px for screens between 405px and 1023px
-    transition: width 300ms ease-in-out; // Add a smooth transition when hiding
+    width: 0;
+    transition: width 300ms ease-in-out;
   }
 }
 
@@ -82,10 +82,10 @@
   display: flex;
   flex-direction: column;
   position: relative;
-  margin-left: 30px; // Matches expanded sidebar width
+  margin-left: 30px;
 
   &.isCollapsed {
-    margin-left: 0; // Matches collapsed sidebar width
+    margin-left: 0;
   }
 }
 
@@ -100,39 +100,67 @@
   background: white;
   overflow: hidden;
 
+  .title {
+    margin-top: 0;
+    margin-bottom: 4px;
+  }
+
   @media (min-width: breakpoint.$desktop) {
-    margin-top: 0; // Remove top margin for desktop
+    margin-top: 0;
     padding: space.$s8;
     border-top-left-radius: space.$s10;
+
+    .info {
+      margin-top: 4px;
+      margin-bottom: 24px;
+    }
   }
 
   @media (width <= 1023px) {
-    margin-left: -30px; // Reset any left margin
-    padding-left: 10px; // Add a small padding to the left side
-    padding-right: 10px; // Maintain balance with right padding
+    margin-left: -30px;
+    padding-left: 10px;
+    padding-right: 10px;
   }
 }
 
 .info {
-  font: font.$text-sm-regular; // Adjust font styling
+  font: font.$text-sm-regular;
   line-height: 1.5;
 
   .breakText {
-    display: inline; // Default for larger screens
-  }
+    display: inline; // Default display for larger screens
 
-  @media (width <= 1023px) {
-    // Mobile view breakpoint
-    .breakText {
-      display: block; // Force text to a new line
+    // Force a break at "events" for Issues or "alert" for Project
+    &.breakAtEvents {
+      word-wrap: break-word;
+      white-space: normal;
+    }
+
+    @media (width <= 1023px) {
+      // Mobile view
+      &.breakAtEvents {
+        display: block; // Force the text to break into a new line
+      }
+    }
+
+    &.breakAtAlert {
+      word-wrap: break-word;
+      white-space: normal;
+    }
+
+    @media (width <= 1023px) {
+      // Mobile view
+      &.breakAtAlert {
+        display: block; // Force the text to break into a new line
+      }
     }
   }
 }
 
 .footer {
-  margin-left: 250px; // Expanded state
+  margin-left: 250px;
 
   &.isCollapsed {
-    margin-left: 83px; // Collapsed state
+    margin-left: 83px;
   }
 }
