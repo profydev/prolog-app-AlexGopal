@@ -193,10 +193,14 @@ const IssuesPage: NextPage = () => {
     <PageContainer
       title="Issues"
       info={
-        <>
-          Overview of errors, warnings, and events <br /> logged from your
-          projects.
-        </>
+        <div className={styles.infoContainer}>
+          Overview of errors, warnings, and events{" "}
+          <span className={styles.breakText}>logged from your projects.</span>
+        </div>
+        // <>
+        //   Overview of errors, warnings, and events <br /> logged from your
+        //   projects.
+        // </>
       }
     >
       <div className={styles.filterControls}>

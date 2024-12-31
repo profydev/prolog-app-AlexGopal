@@ -1,118 +1,3 @@
-// @use "@styles/space";
-// @use "@styles/breakpoint";
-
-// .filterControls {
-//   display: flex;
-//   flex-direction: column;
-//   gap: 16px; /* Default spacing */
-//   align-items: stretch;
-//   width: 100%;
-
-//   // padding: 0 12px; /* Horizontal padding */
-//   padding-left: 0;
-//   padding-right: 0;
-//   box-sizing: border-box;
-
-//   > *:first-child {
-//     margin-top: 32px; /* Space between Overview text and first Select */
-//   }
-// }
-
-// .inputContainer {
-//   margin-bottom: 24px !important; /* Force 24px below the input */
-// }
-
-// .tableHeader {
-//   margin-top: 0 !important; /* Remove any margin added to the table header */
-// }
-
-// @use "@styles/space";
-// @use "@styles/breakpoint";
-
-// .filterControls {
-//   display: flex;
-//   flex-direction: column; /* Stack items vertically by default */
-//   gap: 16px; /* Spacing between items */
-//   align-items: stretch; /* Stretch to full width */
-//   width: 100%;
-//   padding-left: 0;
-//   padding-right: 0;
-//   box-sizing: border-box;
-
-//   /* Add space between the first child (e.g., "Overview" text and first select) */
-//   > *:first-child {
-//     margin-top: 32px;
-//   }
-// }
-
-// /* For desktop screens, align the items horizontally and align them to the right */
-// @media (min-width: 1024px) {
-//   .filterControls {
-//     flex-direction: row; /* Align items horizontally */
-//     justify-content: flex-end; /* Align to the right side */
-//     gap: 16px; /* Maintain a gap between the items */
-//     align-items: center; /* Vertically center items */
-//   }
-// }
-
-// /* Additional styling for the input container to maintain layout */
-// .inputContainer {
-//   margin-bottom: 24px !important; /* Add space below the input */
-// }
-
-// .tableHeader {
-//   margin-top: 0 !important; /* Remove top margin from the table header */
-// }
-
-// @use "@styles/space";
-// @use "@styles/breakpoint";
-
-// .filterControls {
-//   display: flex;
-//   flex-direction: column; /* Stack items vertically by default (mobile-first) */
-//   gap: 16px; /* Default spacing between items */
-//   align-items: stretch;
-//   width: 100%;
-//   padding-left: 0;
-//   padding-right: 0;
-//   box-sizing: border-box;
-
-//   > *:first-child {
-//     margin-top: 32px; /* Space between Overview text and first Select */
-//   }
-
-//   /* For screens 1024px and above (desktop) */
-//   @media (min-width: 1024px) {
-//     flex-direction: row; /* Align items in a row on desktop */
-//     justify-content: flex-end; /* Align the controls to the right */
-//     align-items: center; /* Vertically center items */
-//     gap: 16px; /* Maintain spacing between items */
-
-//     /* Adjust the widths of the input and selects */
-//     .inputContainer {
-//       width: 35%; /* Input should take 60% of the space */
-//     }
-
-//     .selectContainer {
-//       width: 20%; /* Select components should take up 20% */
-//       // margin-bottom: 25px;
-//     }
-
-//     /* Ensure all items have the same height */
-//     > * {
-//       height: 3rem; /* Ensure all items are aligned with the same height */
-//     }
-//   }
-// }
-
-// .inputContainer {
-//   margin-bottom: 24px !important; /* Force 24px below the input */
-// }
-
-// .tableHeader {
-//   margin-top: 0 !important; /* Remove any margin added to the table header */
-// }
-
 @use "@styles/space";
 @use "@styles/breakpoint";
 
@@ -137,6 +22,10 @@
     justify-content: flex-end; /* Align the controls to the right */
     align-items: center; /* Vertically center items */
     gap: 16px; /* Maintain spacing between items */
+
+    .breakText {
+      display: inline;
+    }
 
     /* Remove margin-top for first child on desktop */
     > *:first-child {
@@ -171,4 +60,12 @@
 
 .tableHeader {
   margin-top: 0 !important; /* Remove top margin from the table header */
+}
+
+.breakText {
+  display: inline; /* Default display on larger screens */
+
+  @media (width <= 1023px) {
+    display: block; /* Force the text to break on mobile */
+  }
 }
