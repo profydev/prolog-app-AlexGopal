@@ -1,32 +1,86 @@
+// @use "@styles/color";
+// @use "@styles/space";
+// @use "@styles/font";
+
+// .row:nth-child(2n) {
+//   background: color.$gray-50;
+// }
+
+// .cell {
+//   padding: space.$s4 space.$s6;
+//   color: color.$gray-500;
+//   font: font.$text-sm-regular;
+// }
+
+// .issueCell {
+//   composes: cell;
+//   display: flex;
+//   align-items: center;
+// }
+
+// .languageIcon {
+//   width: space.$s10;
+//   margin-right: space.$s3;
+// }
+
+// .errorTypeAndMessage {
+//   color: color.$gray-900;
+// }
+
+// .errorType {
+//   font: font.$text-sm-medium;
+// }
+
 @use "@styles/color";
 @use "@styles/space";
 @use "@styles/font";
 
-.row:nth-child(2n) {
-  background: color.$gray-50;
+@media (width >= 1024px) {
+  .row:nth-child(2n) {
+    background: color.$gray-50;
+  }
+
+  .cell {
+    padding: space.$s4 space.$s6;
+    color: color.$gray-500;
+    font: font.$text-sm-regular;
+  }
+
+  .issueCell {
+    composes: cell;
+    display: flex;
+    align-items: center;
+  }
+
+  .languageIcon {
+    width: space.$s10;
+    margin-right: space.$s3;
+  }
+
+  .errorTypeAndMessage {
+    color: color.$gray-900;
+  }
+
+  .errorType {
+    font: font.$text-sm-medium;
+  }
 }
 
-.cell {
-  padding: space.$s4 space.$s6;
-  color: color.$gray-500;
-  font: font.$text-sm-regular;
-}
+@media (width <= 1023px) {
+  .issueCell {
+    display: flex;
+    flex-direction: row; // Keep items in a horizontal row for fat look
+    justify-content: space-between; // Space out elements inside each cell
+    width: 80%; // Make cells 80% of the container's width, making them wider
+    margin: 8px auto; // Center the cells and create some space between them
+    padding: space.$s3 space.$s4; // Adjust padding for more compact appearance
+    height: auto; // Let the height adjust based on content
 
-.issueCell {
-  composes: cell;
-  display: flex;
-  align-items: center;
-}
+    // Optional: Reduce font size to make the content fit well
+    font: font.$text-sm-medium;
 
-.languageIcon {
-  width: space.$s10;
-  margin-right: space.$s3;
-}
-
-.errorTypeAndMessage {
-  color: color.$gray-900;
-}
-
-.errorType {
-  font: font.$text-sm-medium;
+    // Optional: Add borders for better separation
+    border: 1px solid color.$gray-300;
+    background-color: color.$gray-50;
+  }
 }

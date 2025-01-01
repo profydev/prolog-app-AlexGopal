@@ -1,34 +1,53 @@
 @use "@styles/color";
 @use "@styles/space";
 @use "@styles/font";
+@use "@styles/breakpoint";
 
-.container {
-  background: white;
-  border: 1px solid color.$gray-200;
-  box-sizing: border-box;
-  box-shadow:
-    0 4px 8px -2px rgb(16 24 40 / 10%),
-    0 2px 4px -2px rgb(16 24 40 / 6%);
-  border-radius: space.$s2;
-  overflow: hidden;
-}
-
+// The table for listing issues
 .table {
   width: 100%;
   border-collapse: collapse;
 }
 
-.headerRow {
-  border-bottom: 1px solid color.$gray-200;
+// Hide the header row on mobile
+@media (width >= 1024px) {
+  .headerRow {
+    display: table-row; // Show the header row on desktop
+    border-bottom: 1px solid color.$gray-200;
+  }
+
+  .headerCell {
+    padding: space.$s3 space.$s6;
+    text-align: left;
+    color: color.$gray-500;
+    font: font.$text-xs-medium;
+  }
+
+  // The table container for the issues list
+  .container {
+    background: white;
+    border: 1px solid color.$gray-200;
+    box-sizing: border-box;
+    box-shadow:
+      0 4px 8px -2px rgb(16 24 40 / 10%),
+      0 2px 4px -2px rgb(16 24 40 / 6%);
+    border-radius: space.$s2;
+    overflow: hidden;
+  }
 }
 
-.headerCell {
-  padding: space.$s3 space.$s6;
-  text-align: left;
-  color: color.$gray-500;
-  font: font.$text-xs-medium;
+// Mobile-specific styles
+@media (width <= 1023px) {
+  .headerRow {
+    display: none; // Hide the header row on mobile
+  }
+
+  .headerCell {
+    display: none; // Hide the header cells on mobile
+  }
 }
 
+// Pagination container
 .paginationContainer {
   display: flex;
   align-items: center;
@@ -57,4 +76,22 @@
 
 .pageNumber {
   font: font.$text-sm-medium;
+}
+
+// Mobile-only styles
+.mobileOnly {
+  display: block; // Show only on mobile
+
+  @media (min-width: breakpoint.$desktop) {
+    display: none; // Hide on desktop
+  }
+}
+
+// Desktop-only styles
+.desktopOnly {
+  display: none; // Hide on mobile
+
+  @media (min-width: breakpoint.$desktop) {
+    display: block; // Show on desktop
+  }
 }
