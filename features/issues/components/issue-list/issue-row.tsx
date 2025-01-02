@@ -108,16 +108,25 @@ export function IssueRow({ projectLanguage, issue }: IssueRowProps) {
                 {message}
               </div>
               <div>{firstLineOfStackTrace}</div>
-              <div className={styles.cell}>
-                <div>Status</div>
-                <Badge color={levelColors[level]} size={BadgeSize.sm}>
-                  {capitalize(level)}
-                </Badge>
+              {/* see the note at the bottom for how this works*/}
+              <div className={styles.messagetext}>
+                <div className={styles.cell}>
+                  <div>Status</div>
+                  <div className={styles.value}>
+                    <Badge color={levelColors[level]} size={BadgeSize.sm}>
+                      {capitalize(level)}
+                    </Badge>
+                  </div>
+                </div>
+                <div className={styles.cell}>
+                  <div>Events</div>
+                  <div className={styles.value}>{numEvents}</div>
+                </div>
+                <div className={styles.cell}>
+                  <div>Users</div>
+                  <div className={styles.value}>{numUsers}</div>
+                </div>
               </div>
-              <div>Events</div>
-              <div className={styles.cell}>{numEvents}</div>
-              <div>Users</div>
-              <div className={styles.cell}>{numUsers}</div>
             </div>
           </td>
         </tr>
@@ -151,3 +160,24 @@ export function IssueRow({ projectLanguage, issue }: IssueRowProps) {
     </>
   );
 }
+
+/*
+note for how we got 2 rows an 3 columns.
+Container (.messagetext):
+
+You have a flexbox layout applied to the .messagetext container, which by default, arranges the items in a row because flex-direction: row; 
+is set. However, each item (Status, Events, Users) is wrapped inside its own .cell.
+This means that the Status, Events, and Users labels (and their values) all line up side by side in a horizontal row.
+Inside each .cell:
+
+Inside each .cell, you have:
+The label (Status, Events, Users), and
+The corresponding value (the actual status, number of events, or number of users).
+This is done with div elements to separate the label and its value, which are stacked vertically inside each .cell. 
+The div for the label is displayed above the div for the value.
+Desired Layout (2 rows and 3 columns):
+
+In your layout, you have 2 rows of content:
+Row 1: Status, Events, and Users as labels.
+Row 2: Corresponding values for each of those labels.
+*/
