@@ -44,6 +44,10 @@
   &.warning {
     background: color.$warning-50;
     color: color.$warning-700;
+
+    @media (width <= 1023px) {
+      margin-left: -10px;
+    }
   }
 
   &.success {

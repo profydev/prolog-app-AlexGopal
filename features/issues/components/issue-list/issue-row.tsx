@@ -118,9 +118,13 @@ export function IssueRow({ projectLanguage, issue }: IssueRowProps) {
                     </Badge>
                   </div>
                 </div>
-                <div className={styles.cell}>
-                  <div>Events</div>
-                  <div className={styles.value}>{numEvents}</div>
+                <div
+                  className={`${level === "warning" ? styles.warningLevel : ""}`}
+                >
+                  <div className={styles.cell}>
+                    <div>Events</div>
+                    <div className={styles.value}>{numEvents}</div>
+                  </div>
                 </div>
                 <div className={styles.cell}>
                   <div>Users</div>

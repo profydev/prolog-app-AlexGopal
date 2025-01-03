@@ -89,5 +89,12 @@
     flex-direction: row;
     color: color.$gray-500;
     font: font.$text-sm-medium;
+    padding: 16px 24px;
+    justify-content: space-between;
+    margin-left: -24px;
+  }
+
+  .warningLevel {
+    margin-left: -8px;
   }
 }
