@@ -117,7 +117,7 @@ export function IssueList({
         </tbody>
       </table>
       <div className={styles.paginationContainer}>
-        <div>
+        <div className={styles.buttonWrapper}>
           <button
             className={styles.paginationButton}
             onClick={() => navigateToPage(currentPage - 1)}
