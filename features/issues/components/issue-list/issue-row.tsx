@@ -95,41 +95,51 @@ export function IssueRow({ projectLanguage, issue }: IssueRowProps) {
       {isMobile ? (
         // Mobile View
         <tr className={styles.mobile}>
+          <div></div>
           <td className={styles.issueCell}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              className={styles.languageIcon}
-              src={`/icons/${projectLanguage}.svg`}
-              alt={projectLanguage}
-            />
-            <div>
-              <div className={styles.errorTypeAndMessage}>
-                <span className={styles.errorType}>{name}:&nbsp;</span>
-                {message}
+            <div className={styles.projectandmessagewrapper}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                className={styles.languageIcon}
+                src={`/icons/${projectLanguage}.svg`}
+                alt={projectLanguage}
+              />
+              <div className={styles.errorTypeAndMessageWrapper}>
+                {" "}
+                {/* Wrapper for mobile */}
+                <div className={styles.errorTypeAndMessage}>
+                  <span className={styles.errorType}>{name}:&nbsp;</span>
+                  <span className={styles.messageText}>
+                    {message.length > 23 ? message.slice(0, 23) : message}
+                  </span>
+                </div>
+                <div className={styles.stacktrace}>
+                  {firstLineOfStackTrace.length > 38
+                    ? firstLineOfStackTrace.slice(0, 38)
+                    : firstLineOfStackTrace}
+                </div>
               </div>
-              <div>{firstLineOfStackTrace}</div>
-              {/* see the note at the bottom for how this works*/}
-              <div className={styles.messagetext}>
+            </div>
+            <div className={styles.messagetext}>
+              <div className={styles.cell}>
+                <div>Status</div>
+                <div className={styles.value}>
+                  <Badge color={levelColors[level]} size={BadgeSize.sm}>
+                    {capitalize(level)}
+                  </Badge>
+                </div>
+              </div>
+              <div
+                className={`${level === "warning" ? styles.warningLevel : ""}`}
+              >
                 <div className={styles.cell}>
-                  <div>Status</div>
-                  <div className={styles.value}>
-                    <Badge color={levelColors[level]} size={BadgeSize.sm}>
-                      {capitalize(level)}
-                    </Badge>
-                  </div>
+                  <div>Events</div>
+                  <div className={styles.value}>{numEvents}</div>
                 </div>
-                <div
-                  className={`${level === "warning" ? styles.warningLevel : ""}`}
-                >
-                  <div className={styles.cell}>
-                    <div>Events</div>
-                    <div className={styles.value}>{numEvents}</div>
-                  </div>
-                </div>
-                <div className={styles.cell}>
-                  <div>Users</div>
-                  <div className={styles.value}>{numUsers}</div>
-                </div>
+              </div>
+              <div className={styles.cell}>
+                <div>Users</div>
+                <div className={styles.value}>{numUsers}</div>
               </div>
             </div>
           </td>
@@ -149,7 +159,7 @@ export function IssueRow({ projectLanguage, issue }: IssueRowProps) {
                 <span className={styles.errorType}>{name}:&nbsp;</span>
                 {message}
               </div>
-              <div>{firstLineOfStackTrace}</div>
+              <div className={styles.stacktrace}>{firstLineOfStackTrace}</div>
             </div>
           </td>
           <td className={styles.cell}>

@@ -57,31 +57,43 @@
     margin-right: space.$s3;
   }
 
+  /* Group error message and stack trace together */
+  .errorTypeAndMessageWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start; /* Align items to the left */
+  }
+
   .errorTypeAndMessage {
+    font: font.$text-sm-medium;
     color: color.$gray-900;
   }
 
-  .errorType {
-    font: font.$text-sm-medium;
+  .errorTypeAndMessage,
+  .stacktrace {
+    text-align: left; /* Ensure text aligns to the left */
+    margin-left: 0;
+  }
+
+  .stacktrace {
+    margin-top: 4px; /* Optional spacing between the error message and stack trace */
   }
 }
 
 @media (width <= 1023px) {
   .issueCell {
-    display: flex;
-    flex-direction: row; // Keep items in a horizontal row
-    justify-content: space-between; // Space out elements inside each cell
-    width: 100%; // Keeps the cell width responsive
-    margin: 8px auto; // Center the cells and create space between them
-    padding: space.$s3 space.$s4; // Adjust padding for compactness
-    height: auto; // Let the height adjust based on content
+    display: block;
+    width: 100%;
+    margin: 8px auto;
+    padding: space.$s3 space.$s4;
+    height: auto;
     font: font.$text-sm-medium;
-
-    // Optional: Add borders for better separation
     border: 1px solid color.$gray-300;
     background-color: color.$gray-50;
-    max-width: 100%; // Ensures it doesn’t overflow
+    max-width: 100%;
     box-sizing: border-box;
+    flex-grow: 1;
   }
 
   .messagetext {
@@ -91,10 +103,76 @@
     font: font.$text-sm-medium;
     padding: 16px 24px;
     justify-content: space-between;
-    margin-left: -24px;
+    margin-left: 0; // Reset negative margin for better alignment
+  }
+
+  .projectandmessagewrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start; /* Align to the left */
+    justify-content: center;
+    width: 100%;
   }
 
   .warningLevel {
     margin-left: -8px;
   }
+
+  /* Flexbox to align elements for mobile view */
+  .errorTypeAndMessageWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Align items to the left */
+    margin-left: 24px;
+  }
+
+  .stacktrace {
+    margin-top: 4px; /* Optional spacing between the error message and stack trace */
+  }
 }
+
+// @media (width >= 1024px) {
+//   .row:nth-child(2n) {
+//     background: color.$gray-50;
+//   }
+
+//   .cell {
+//     padding: space.$s4 space.$s6;
+//     color: color.$gray-500;
+//     font: font.$text-sm-regular;
+//     font-size: calc(0.6vw + 0.6vh);
+//   }
+
+//   .issueCell {
+//     composes: cell;
+//     display: flex;
+//     align-items: center;
+
+//   }
+
+//   .languageIcon {
+//     width: space.$s10;
+//     margin-right: space.$s3;
+//   }
+
+//   .errorTypeAndMessage {
+//     color: color.$gray-900;
+//     font-size: calc(0.45vw + 0.45vh);
+//     // font: clamp(14px, 2vw, 16px);
+//     // white-space: nowrap;
+//     // overflow: hidden;
+//     // text-overflow: ellipsis;
+//     // font: font.$text-sm-normal;
+
+//   }
+
+//   .stracktrace{
+//     color: color.$gray-900;
+//     font-size: calc(0.4vw + 0.4vh);
+//   }
+
+//   .errorType {
+//     // font: font.$text-sm-medium;
+//     font-size: calc(0.60vw + 0.60vh);
+//   }
+// }
