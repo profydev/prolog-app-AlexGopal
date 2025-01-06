@@ -1,10 +1,18 @@
 import Link from "next/link";
-import styles from "./footer.module.scss";
 import Image from "next/image";
+import { useContext } from "react";
+import { NavigationContext } from "../layout/sidebar-navigation/navigation-context"; // Adjust the path if necessary
+import styles from "./footer.module.scss";
 
 export function Footer() {
+  const { isSidebarCollapsed } = useContext(NavigationContext);
+
   return (
-    <footer className={styles.footer}>
+    <footer
+      className={`${styles.footer} ${
+        isSidebarCollapsed ? styles.isCollapsed : ""
+      }`}
+    >
       <div className={styles.container}>
         {/* Left-aligned version */}
         <div className={styles.version}>

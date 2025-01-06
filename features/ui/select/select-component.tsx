@@ -30,7 +30,12 @@ export function SelectComponent({
 
   return (
     <div className={styles.container}>
-      <FormControl style={{ width: "220px", minWidth: "220px" }}>
+      <FormControl
+        sx={{
+          width: "100%",
+          boxSizing: "border-box",
+        }}
+      >
         <InputLabel id={`${label}-select-label`}>{label}</InputLabel>
         <Select
           labelId={`${label}-select-label`}
@@ -39,8 +44,10 @@ export function SelectComponent({
           onChange={handleChange}
           label={label}
           {...props}
+          sx={{
+            padding: "0", // Remove internal padding
+          }}
         >
-          {/* Dynamically render the options */}
           {options.map((option) => (
             <MenuItem key={option.value} value={option.value}>
               {option.label}
