@@ -193,6 +193,7 @@
 @use "styles/font";
 @use "styles/misc";
 @use "styles/space";
+@use "@styles/z-index";
 
 .header {
   width: 100%;
@@ -203,26 +204,69 @@
   justify-content: space-between;
   align-items: center;
   background: color.$white-000;
+  z-index: z-index.$header;
+
+  @media (min-width: breakpoint.$desktop) {
+    padding: 0 space.$s8;
+  }
 }
 
 .nav {
-  display: flex;
-  align-items: center;
+  position: fixed;
+  top: misc.$header-height;
+  left: 0;
+  bottom: 0;
+  width: 19.5rem;
+  padding: space.$s4;
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: color.$white-000;
+
+  // z-index: z-index.$header;
+  transform: translateX(-100%);
+  transition: transform 300ms;
+
+  &.isMobileMenuOpen {
+    transform: translateX(0);
+  }
+
+  @media (min-width: breakpoint.$desktop) {
+    position: relative;
+    top: 0;
+    width: auto;
+    padding: 0;
+    transform: none;
+    flex-direction: row;
+    align-items: center;
+    flex: 1;
+  }
+}
+
+.mobileMenuButton {
+  @media (min-width: breakpoint.$desktop) {
+    display: none;
+  }
 }
 
 .linkList {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   flex: 1;
   gap: space.$s8;
   margin: 0;
   padding: 0;
+  padding-left: space.$s4;
   list-style: none;
 
   & a {
     font: font.$text-md-medium;
     color: color.$gray-500;
     text-decoration: none;
+  }
+
+  @media (min-width: breakpoint.$desktop) {
+    flex-direction: row;
+    justify-content: center;
   }
 }

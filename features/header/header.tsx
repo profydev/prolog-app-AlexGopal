@@ -205,6 +205,9 @@
 import Link from "next/link";
 import { Routes } from "config/routes";
 import styles from "./header.module.scss";
+import { Button } from "@features/ui";
+import { useState } from "react";
+import classNames from "classnames"; // Utility for conditional classes
 
 const navLinks = [
   { label: "Home", href: "/" },
@@ -214,10 +217,16 @@ const navLinks = [
 ];
 
 export function Header() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   return (
     <header className={styles.header}>
       <img src="/icons/logo-large.svg" alt="Prolog logo" />
-      <nav className={styles.nav}>
+      <nav
+        className={classNames(
+          styles.nav,
+          isMenuOpen && styles.isMobileMenuOpen,
+        )}
+      >
         <ul className={styles.linkList}>
           {navLinks.map((link) => (
             <li key={link.label}>
@@ -227,6 +236,16 @@ export function Header() {
         </ul>
         <a href={Routes.projects}>Dashboard</a>
       </nav>
+
+      <Button
+        className={styles.mobileMenuButton}
+        onClick={() => setIsMenuOpen(!isMenuOpen)}
+      >
+        <img
+          src={isMenuOpen ? "/icons/close-dark.svg" : "/icons/menu-dark.svg"}
+          alt={isMenuOpen ? "Close Menu" : "Open Menu"}
+        />
+      </Button>
     </header>
   );
 }
