@@ -206,8 +206,21 @@
   background: color.$white-000;
   z-index: z-index.$header;
 
+  &.isMobileMenuOpen::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: color.$white-000;
+    opacity: 0.6;
+    z-index: -1;
+  }
+
   @media (min-width: breakpoint.$desktop) {
     padding: 0 space.$s8;
+
+    &.isMobileMenuOpen::before {
+      display: none;
+    }
   }
 }
 

@@ -219,7 +219,12 @@ const navLinks = [
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   return (
-    <header className={styles.header}>
+    <header
+      className={classNames(
+        styles.header,
+        isMenuOpen && styles.isMobileMenuOpen,
+      )}
+    >
       <img src="/icons/logo-large.svg" alt="Prolog logo" />
       <nav
         className={classNames(
