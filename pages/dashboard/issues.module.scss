@@ -1,7 +1,71 @@
+@use "@styles/space";
+@use "@styles/breakpoint";
+
 .filterControls {
-  display: flex; /* Activate flexbox */
-  flex-direction: row; /* Arrange items in a row (default, but explicit here) */
-  gap: 16px; /* Add space between items */
-  align-items: center; /* Vertically align items to the center */
-  justify-content: flex-end; /* Align items to the left (default) */
+  display: flex;
+  flex-direction: column; /* Stack items vertically by default (mobile-first) */
+  gap: 16px; /* Default spacing between items */
+  align-items: stretch;
+  width: 100%;
+  padding-left: 0;
+  padding-right: 0;
+  box-sizing: border-box;
+
+  /* Space between the Overview text and the first select */
+  > *:first-child {
+    margin-top: 32px; /* Only for mobile */
+  }
+
+  /* For screens 1024px and above (desktop) */
+  @media (width >= 1024px) {
+    flex-direction: row; /* Align items in a row on desktop */
+    justify-content: flex-end; /* Align the controls to the right */
+    align-items: center; /* Vertically center items */
+    gap: 16px; /* Maintain spacing between items */
+
+    .breakText {
+      display: inline;
+    }
+
+    /* Remove margin-top for first child on desktop */
+    > *:first-child {
+      margin-top: 0; /* Remove the space between text and first select on desktop */
+    }
+
+    .inputContainer,
+    .selectContainer {
+      height: 3rem; /* Set same height for all items */
+    }
+
+    /* Apply direct widths for consistency */
+    .inputContainer {
+      width: 35%; /* Adjust input width */
+      margin-bottom: 0 !important;
+    }
+
+    .selectContainer {
+      width: 22.5%; /* Adjust select width */
+    }
+
+    margin-top: 32px;
+  }
+
+  /* Add some space below filter controls to prevent cutting into the table */
+  margin-bottom: 32px;
+}
+
+.inputContainer {
+  margin-bottom: 24px !important; /* Space below the input */
+}
+
+.tableHeader {
+  margin-top: 0 !important; /* Remove top margin from the table header */
+}
+
+.breakText {
+  display: inline; /* Default display on larger screens */
+
+  @media (width <= 1023px) {
+    display: block; /* Force the text to break on mobile */
+  }
 }

@@ -1,0 +1,22 @@
+@use "@styles/space";
+@use "@styles/breakpoint";
+
+// Apply margin-bottom to the div wrapping the info
+.infoContainer {
+  margin-bottom: 48px; /* Adjust space between the info and the first project card */
+}
+
+// For mobile screens, adjust the margin-bottom for better spacing
+@media (width <= 1023px) {
+  .infoContainer {
+    margin-bottom: 32px; /* Increase space on mobile */
+  }
+}
+
+.breakText {
+  display: inline; /* Default display on larger screens */
+
+  @media (width <= 1023px) {
+    display: block; /* Force the text to break on mobile */
+  }
+}

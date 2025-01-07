@@ -3,25 +3,34 @@
 
 .list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  grid-gap: space.$s6;
+  grid-template-columns: repeat(
+    1,
+    1fr
+  ); // Mobile layout: 1 column for all cards
 
-  /* reset list styles */
-  list-style: none;
-  padding: 0;
-  margin: 0;
+  grid-gap: space.$s6; // Space between cards
 
+  /* Reset list styles */
+  list-style: none; // Removes the bullet points
+  padding: 0; // Removes any padding
+  margin: 0; // Removes any margin
+
+  /* Desktop layout (1024px and above) */
   @media (min-width: breakpoint.$desktop) {
-    grid-template-columns: repeat(auto-fit, 400px);
+    grid-template-columns: repeat(2, 1fr); // 2 columns in the first row
+    grid-template-rows: auto auto; // Two rows: 1st row = 2 items, 2nd row = 1 item
   }
+}
+
+.listItem {
+  display: flex;
 }
 
 .loaderwrapper {
   display: flex;
-  justify-content: center; /* Center horizontally */
-  align-items: center; /* Center vertically */
-  height: 100vh; /* Full height to center it vertically in the viewport */
-  // margin-top: 0px;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 
   @media (min-width: breakpoint.$desktop) {
     margin-top: -300px;
@@ -29,8 +38,8 @@
 }
 
 .loader {
-  border: 8px solid #f9f5ff; /* Light grey */
-  border-top: 8px solid #7f56d9; /* Blue */
+  border: 8px solid #f9f5ff;
+  border-top: 8px solid #7f56d9;
   border-radius: 50%;
   width: 48px;
   height: 48px;
@@ -46,5 +55,3 @@
     transform: rotate(360deg);
   }
 }
-
-// try less margin-top on desktop

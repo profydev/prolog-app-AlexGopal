@@ -1,7 +1,7 @@
 import Head from "next/head";
 import { SidebarNavigation } from "../sidebar-navigation";
 import { Footer } from "../../footer/footer";
-import classNames from "classnames"; // <-- Add this line
+import classNames from "classnames";
 import styles from "./page-container.module.scss";
 import { useContext } from "react";
 import { NavigationContext } from "../sidebar-navigation/navigation-context";
@@ -9,12 +9,11 @@ import { NavigationContext } from "../sidebar-navigation/navigation-context";
 type PageContainerProps = {
   children: React.ReactNode;
   title: string;
-  info: string;
+  info?: React.ReactNode;
 };
 
 export function PageContainer({ children, title, info }: PageContainerProps) {
   const documentTitle = `ProLog - ${title}`;
-
   const { isSidebarCollapsed } = useContext(NavigationContext);
 
   return (
@@ -25,7 +24,6 @@ export function PageContainer({ children, title, info }: PageContainerProps) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      {/* Apply isCollapsed class dynamically */}
       <div
         className={classNames(
           styles.sidebar,

@@ -1,32 +1,178 @@
+// @use "@styles/color";
+// @use "@styles/space";
+// @use "@styles/font";
+
+// .row:nth-child(2n) {
+//   background: color.$gray-50;
+// }
+
+// .cell {
+//   padding: space.$s4 space.$s6;
+//   color: color.$gray-500;
+//   font: font.$text-sm-regular;
+// }
+
+// .issueCell {
+//   composes: cell;
+//   display: flex;
+//   align-items: center;
+// }
+
+// .languageIcon {
+//   width: space.$s10;
+//   margin-right: space.$s3;
+// }
+
+// .errorTypeAndMessage {
+//   color: color.$gray-900;
+// }
+
+// .errorType {
+//   font: font.$text-sm-medium;
+// }
+
 @use "@styles/color";
 @use "@styles/space";
 @use "@styles/font";
 
-.row:nth-child(2n) {
-  background: color.$gray-50;
+@media (width >= 1024px) {
+  .row:nth-child(2n) {
+    background: color.$gray-50;
+  }
+
+  .cell {
+    padding: space.$s4 space.$s6;
+    color: color.$gray-500;
+    font: font.$text-sm-regular;
+  }
+
+  .issueCell {
+    composes: cell;
+    display: flex;
+    align-items: center;
+  }
+
+  .languageIcon {
+    width: space.$s10;
+    margin-right: space.$s3;
+  }
+
+  /* Group error message and stack trace together */
+  .errorTypeAndMessageWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start; /* Align items to the left */
+  }
+
+  .errorTypeAndMessage {
+    font: font.$text-sm-medium;
+    color: color.$gray-900;
+  }
+
+  .errorTypeAndMessage,
+  .stacktrace {
+    text-align: left; /* Ensure text aligns to the left */
+    margin-left: 0;
+  }
+
+  .stacktrace {
+    margin-top: 4px; /* Optional spacing between the error message and stack trace */
+  }
 }
 
-.cell {
-  padding: space.$s4 space.$s6;
-  color: color.$gray-500;
-  font: font.$text-sm-regular;
+@media (width <= 1023px) {
+  .issueCell {
+    display: block;
+    width: 100%;
+    margin: 8px auto;
+    padding: space.$s3 space.$s4;
+    height: auto;
+    font: font.$text-sm-medium;
+    border: 1px solid color.$gray-300;
+    background-color: color.$gray-50;
+    max-width: 100%;
+    box-sizing: border-box;
+    flex-grow: 1;
+  }
+
+  .messagetext {
+    display: flex;
+    flex-direction: row;
+    color: color.$gray-500;
+    font: font.$text-sm-medium;
+    padding: 16px 24px;
+    justify-content: space-between;
+    margin-left: 0; // Reset negative margin for better alignment
+  }
+
+  .projectandmessagewrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start; /* Align to the left */
+    justify-content: center;
+    width: 100%;
+  }
+
+  .warningLevel {
+    margin-left: -8px;
+  }
+
+  /* Flexbox to align elements for mobile view */
+  .errorTypeAndMessageWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Align items to the left */
+    margin-left: 24px;
+  }
+
+  .stacktrace {
+    margin-top: 4px; /* Optional spacing between the error message and stack trace */
+  }
 }
 
-.issueCell {
-  composes: cell;
-  display: flex;
-  align-items: center;
-}
+// @media (width >= 1024px) {
+//   .row:nth-child(2n) {
+//     background: color.$gray-50;
+//   }
 
-.languageIcon {
-  width: space.$s10;
-  margin-right: space.$s3;
-}
+//   .cell {
+//     padding: space.$s4 space.$s6;
+//     color: color.$gray-500;
+//     font: font.$text-sm-regular;
+//     font-size: calc(0.6vw + 0.6vh);
+//   }
 
-.errorTypeAndMessage {
-  color: color.$gray-900;
-}
+//   .issueCell {
+//     composes: cell;
+//     display: flex;
+//     align-items: center;
 
-.errorType {
-  font: font.$text-sm-medium;
-}
+//   }
+
+//   .languageIcon {
+//     width: space.$s10;
+//     margin-right: space.$s3;
+//   }
+
+//   .errorTypeAndMessage {
+//     color: color.$gray-900;
+//     font-size: calc(0.45vw + 0.45vh);
+//     // font: clamp(14px, 2vw, 16px);
+//     // white-space: nowrap;
+//     // overflow: hidden;
+//     // text-overflow: ellipsis;
+//     // font: font.$text-sm-normal;
+
+//   }
+
+//   .stracktrace{
+//     color: color.$gray-900;
+//     font-size: calc(0.4vw + 0.4vh);
+//   }
+
+//   .errorType {
+//     // font: font.$text-sm-medium;
+//     font-size: calc(0.60vw + 0.60vh);
+//   }
+// }

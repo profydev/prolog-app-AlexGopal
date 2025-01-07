@@ -5,6 +5,10 @@
   border-top: 1px solid #e4e7ec;
   z-index: 1;
 
+  .version {
+    color: #98a2b3;
+  }
+
   .container {
     max-width: 1160px;
     height: 60px;
@@ -16,16 +20,6 @@
     position: relative;
   }
 
-  .version {
-    font-family: Inter, sans-serif;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 24px;
-    color: #98a2b3;
-    position: relative;
-    left: 0;
-  }
-
   .navLinks {
     display: flex;
     gap: 24px;
@@ -33,6 +27,25 @@
     justify-content: center;
     margin-top: 2px;
     margin-right: 1px;
+
+    &.isCollapsed {
+      .container {
+        width: calc(
+          100vw - 80px
+        ); // Dynamically adjust width between 1024px and 1160px
+
+        padding: 0 16px;
+      }
+
+      .navLinks {
+        display: flex;
+        justify-content: center;
+        gap: 16px;
+        transform: translateX(
+          calc((100vw - 1160px) / 2 + 300px)
+        ); // Adjust the links' starting point
+      }
+    }
 
     a {
       background-color: transparent;
@@ -42,7 +55,7 @@
       cursor: pointer;
       padding: 0;
       display: inline-block;
-      text-decoration: none; // Removes underline for links
+      text-decoration: none;
 
       &:hover {
         color: #9e77ed;
@@ -52,7 +65,7 @@
       &:active,
       &:visited {
         color: #667085; // Maintain default color on focus, active, and visited
-        outline: none; // Remove outline for focus if desired
+        outline: none;
       }
     }
   }
@@ -153,7 +166,7 @@
   @media (width >= 1024px) and (width <= 1159px) {
     .container {
       width: calc(
-        100vw - 80px
+        70vw - 80px
       ); // Dynamically adjust width between 1024px and 1160px
 
       padding: 0 16px;
@@ -164,7 +177,7 @@
       justify-content: center;
       gap: 16px;
       transform: translateX(
-        calc((100vw - 1160px) / 2 + 300px)
+        calc((75vw - 1160px) / 2 + 300px)
       ); // Adjust the links' starting point
     }
 
