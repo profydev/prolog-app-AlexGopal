@@ -21,6 +21,7 @@ type ButtonProps = {
   state?: ButtonState;
   disabled?: boolean;
   onClick?: () => void;
+  children?: React.ReactNode; // Allow children as a prop
 };
 
 export function NewButton({
@@ -30,6 +31,7 @@ export function NewButton({
   state = "default",
   disabled = false,
   onClick,
+  children,
 }: ButtonProps) {
   return (
     <button
@@ -41,7 +43,7 @@ export function NewButton({
       <img src="/icons/circle.svg" alt="icon" className={styles.icon} />
 
       {/* Render the text only if the iconPosition is not 'only' */}
-      {iconPosition !== "only" && <span>Button CTA</span>}
+      {iconPosition !== "only" && <span>{children}</span>}
     </button>
   );
 }
