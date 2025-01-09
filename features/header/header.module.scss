@@ -45,6 +45,8 @@
   display: flex;
   flex-direction: column;
   background: color.$white-000;
+
+  // z-index: z-index.$header;
   transform: translateX(-100%);
   transition: transform 300ms;
 
