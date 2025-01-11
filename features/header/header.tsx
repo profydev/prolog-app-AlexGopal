@@ -7,6 +7,7 @@ import { useState } from "react";
 import classNames from "classnames"; // Utility for conditional classes
 import { NewButton } from "@features/ui";
 import { useRouter } from "next/router"; // Import the useRouter hook
+import { Modal } from "@features/ui";
 const navLinks = [
   { label: "Home", href: "/" },
   { label: "Products", href: "/products" },
@@ -57,6 +58,9 @@ export function Header() {
           alt={isMenuOpen ? "Close Menu" : "Open Menu"}
         />
       </Button>
+      <Modal trigger={({ open }) => <button onClick={open}>Open Modal</button>}>
+        {({ close }) => <button onClick={close}>Close Modal</button>}
+      </Modal>
     </header>
   );
 }
