@@ -1,0 +1,64 @@
+@use "styles/breakpoint";
+@use "styles/color";
+@use "styles/font";
+@use "styles/misc";
+@use "styles/space";
+@use "@styles/z-index";
+
+.contactButton {
+  position: absolute;
+  bottom: space.$s10;
+  right: space.$s10;
+  border-radius: 50%;
+  width: auto !important;
+
+  // For screens 1024px and smaller
+  @media (width <= 1024px) {
+    bottom: space.$s8;
+    right: space.$s8;
+  }
+
+  // For screens 768px and smaller
+  @media (width <= 768px) {
+    bottom: space.$s6;
+    right: space.$s6;
+  }
+
+  // For screens 480px and smaller
+  @media (width <= 480px) {
+    bottom: space.$s4;
+    right: space.$s4;
+  }
+
+  // For screens 320px and smaller
+  @media (width <= 320px) {
+    bottom: space.$s3;
+    right: space.$s3;
+  }
+}
+
+.title {
+  margin: space.$s5 0 space.$s2;
+  color: color.$gray-900;
+  font: font.$text-lg-medium;
+}
+
+.info {
+  margin: 0;
+  color: color.$gray-500;
+  font: font.$text-sm-regular;
+}
+
+.actions {
+  width: 100%;
+  display: flex;
+  gap: space.$s3;
+  margin-top: space.$s8;
+
+  // the > selector, is called the child combinator, this targets the direct child of the respective element
+  // * selector, is called the wild card, this targets any direct child of the action container
+  // the flex 1 ensures both buttons take up half of the container width
+  & > * {
+    flex: 1;
+  }
+}
