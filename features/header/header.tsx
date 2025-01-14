@@ -43,6 +43,9 @@ export function Header() {
           size="sm"
           color="primary"
           onClick={() => router.push(Routes.projects)} // Use router here
+          iconSrc="/icons/circle.svg" // Specify the circle icon
+          iconAlt="Dashboard Icon" // Accessible description for the icon
+          iconPosition="before" // Position the icon before the text
         >
           Open Dashboard
         </NewButton>
@@ -57,6 +60,9 @@ export function Header() {
           alt={isMenuOpen ? "Close Menu" : "Open Menu"}
         />
       </Button>
+      {/* <Modal trigger={({ open }) => <button onClick={open}>Open Modal</button>}>
+        {({ close }) => <button onClick={close}>Close Modal</button>}
+      </Modal> */}
     </header>
   );
 }
