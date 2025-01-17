@@ -36,6 +36,10 @@ $text-lg-medium:
   500 1.125rem/1.75rem inter,
   sans-serif; // 18px font size, medium weight
 
+$text-xl-normal:
+  400 1.25rem/1.875rem inter,
+  sans-serif; // 20px font size, 30px line height
+
 /* Display */
 $display-sm-regular:
   400 1.875rem/2.375rem inter,
@@ -55,3 +59,6 @@ $display-md-medium:
 $display-md-semibold:
   600 2.25rem/2.75rem inter,
   sans-serif;
+$display-xl-semibold:
+  600 3.75rem/4.5rem inter,
+  sans-serif; // 60px font size, 72px line height
