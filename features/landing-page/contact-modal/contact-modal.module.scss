@@ -23,50 +23,6 @@
   font: font.$text-lg-medium;
 }
 
-// .info {
-//   margin: 0;
-//   color: color.$gray-500;
-//   font: font.$text-sm-regular;
-//   @media(max-width: 1023px) {
-//     white-space: normal;
-//     word-wrap: break-word;
-//     overflow-wrap: break-word;
-//     text-align: center;
-//   }
-
-//   @media( max-width: 768px) {
-//     font-size: 0.75rem; // Ensure text still fits
-//     line-height: 1.35; // Fine-tune vertical spacing
-//   }
-
-//     @media((min-width: 320px) and (max-width: 374px)) {
-//       font-size: 0.75rem; // Ensure text still fits
-//       line-height: 1.35; // Fine-tune vertical spacing
-
-//     }
-
-//     @media((min-width: 335px) and (max-width: 382px)) {
-//       max-width: 90%;
-//       font-size: 0.8rem; // Ensure text still fits
-//       line-height: 1.35; // Fine-tune vertical spacing
-
-//     }
-
-//     @media((min-width: 402px) and (max-width: 460px)) {
-//       max-width: 90%;
-//       font-size: 0.95rem; // Ensure text still fits
-//       line-height: 1.35; // Fine-tune vertical spacing
-
-//     }
-
-//     @media((min-width: 461px) and (max-width: 1024px)) {
-//       max-width: 90%;
-//       font-size: 0.95rem; // Ensure text still fits
-//       line-height: 1.35; // Fine-tune vertical spacing
-
-//     }
-// }
-
 .info {
   margin: 0 auto;
   color: color.$gray-500;
@@ -111,25 +67,6 @@
     line-height: 1.3;
   }
 }
-
-// .actions {
-//   width: 100%;
-//   display: flex;
-//   gap: space.$s3;
-//   margin-top: space.$s8;
-
-//   // the > selector, is called the child combinator, this targets the direct child of the respective element
-//   // * selector, is called the wild card, this targets any direct child of the action container
-//   // the flex 1 ensures both buttons take up half of the container width
-//   & > * {
-//     flex: 1;
-//     width: 50%;  /* Adjust this value as needed */
-//     box-sizing: border-box;
-//     @media (max-width: 768px) {
-//       font-size: 3vw;  /* Adjust this value as needed */
-//     }
-//   }
-// }
 
 .actions {
   width: 100%;
