@@ -106,6 +106,14 @@ export function ContactModal() {
   return (
     <Modal
       trigger={({ open }) => (
+        // <NewButton
+        //   className={styles.contactButton}
+        //   onClick={open}
+        //   size="xlg"
+        //   color="primary"
+        //   iconPosition="only"
+        //   hideIcon={true} // Hides the icon in ContactModal
+        // />
         <NewButton
           className={styles.contactButton}
           onClick={open}
@@ -135,8 +143,7 @@ export function ContactModal() {
               size="xlg"
               color="gray"
               iconPosition="before"
-              // iconSrc="/icons/circle.svg" // Optional: Add an icon for "Cancel"
-              // iconAlt="Cancel"
+              hideIcon={true} // Ensures no icon for "Cancel" button
             >
               Cancel
             </NewButton>
@@ -145,8 +152,7 @@ export function ContactModal() {
               size="xlg"
               color="primary"
               iconPosition="before"
-              // iconSrc="/icons/mail.svg" // Optional: Add an icon for "Open Email App"
-              // iconAlt="Open Email App"
+              hideIcon={true} // Ensures no icon for "Open Email App" button
             >
               Open Email App
             </NewButton>

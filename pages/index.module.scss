@@ -24,13 +24,17 @@
 .heroWrapper {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  align-items: center; // Ensures content is centered horizontally
+  justify-content: center; // Centers vertically if needed
+  text-align: center; // Ensures text is centered
+  width: 100%; // Ensures it doesn't shrink
+  max-width: 1160px; // Adjust based on your design
+  margin: 0 auto; // Centers the wrapper itself
+  padding: 0 space.$s4; // Adds consistent spacing
 
-  // padding: 0 0; // 96px vertical padding
-  min-height: 100vh; // Ensures the content takes up the full viewport height
-  text-align: center; // Center-aligns text within elements
-  margin-top: -120px;
+  @media (width < 1024px) {
+    padding: 0 10rem; // Adjust for smaller screens
+  }
 }
 
 .heroTitle {
@@ -38,8 +42,18 @@
   text-align: center;
   font: font.$display-xl-semibold;
   letter-spacing: -1.2px;
-  align-self: stretch; // This ensures the element stretches as needed
-  margin: 0;
+  align-self: stretch;
+  margin: 0 auto; // Ensure it's centered
+  max-width: 100%; // Keep full width on desktop
+
+  @media (width < 1024px) {
+    font: font.$display-md-semibold;
+    max-width: 14ch; // Ensures a proper break
+    white-space: normal;
+    word-wrap: break-word;
+    margin: 0 auto; // This centers it when width is reduced
+    display: block; // Ensures it behaves like a block element
+  }
 }
 
 .subTitle {
@@ -47,7 +61,17 @@
   text-align: center;
   font: font.$text-xl-normal;
   width: 648px;
+  max-width: 100%;
   margin-bottom: 40px;
+  white-space: normal;
+  word-wrap: break-word;
+
+  @media (width < 1024px) {
+    font: font.$text-lg-normal;
+    max-width: 30ch; // Adjusted so "monitoring" and "by" move to the next line
+    margin: 0 auto; // Ensures it's centered
+    margin-bottom: 20px;
+  }
 }
 
 .content {

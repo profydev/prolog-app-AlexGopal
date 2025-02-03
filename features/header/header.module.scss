@@ -67,8 +67,13 @@
 }
 
 .mobileMenuButton {
+  position: fixed; // Ensures it stays in the same spot like ContactModal
+  top: space.$s3; // Adjust as needed for vertical positioning
+  right: space.$s10; // Aligns to the right like ContactModal
+  z-index: z-index.$header; // Ensures it stays on top
+
   @media (min-width: breakpoint.$desktop) {
-    display: none;
+    display: none; // Hides it on desktop
   }
 }
 
