@@ -6,34 +6,14 @@
 @use "@styles/z-index";
 
 .contactButton {
-  position: absolute;
+  position: fixed;
   bottom: space.$s10;
-  right: space.$s10;
+  right: space.$s10; // Desktop default, keeps it in the bottom-right corner
   border-radius: 50%;
-  width: auto !important;
+  z-index: z-index.$modal; // Ensures it stays on top
 
-  // For screens 1024px and smaller
   @media (width <= 1024px) {
-    bottom: space.$s8;
-    right: space.$s8;
-  }
-
-  // For screens 768px and smaller
-  @media (width <= 768px) {
-    bottom: space.$s6;
-    right: space.$s6;
-  }
-
-  // For screens 480px and smaller
-  @media (width <= 480px) {
-    bottom: space.$s4;
-    right: space.$s4;
-  }
-
-  // For screens 320px and smaller
-  @media (width <= 320px) {
-    bottom: space.$s3;
-    right: space.$s3;
+    right: space.$s10; // Keep it in the same place for mobile
   }
 }
 
@@ -44,9 +24,48 @@
 }
 
 .info {
-  margin: 0;
+  margin: 0 auto;
   color: color.$gray-500;
-  font: font.$text-sm-regular;
+  text-align: center;
+  white-space: normal;
+  overflow-wrap: break-word;
+
+  // font-size: clamp(0.85rem, 3.8vw, 1.25rem); // Slightly increased min size to push break further
+  line-height: 1.4;
+  max-width: 100%;
+
+  @media (width <= 1023px) {
+    max-width: 100%;
+    font-size: clamp(0.8rem, 3.6vw, 1.15rem);
+  }
+
+  @media (width <= 768px) {
+    max-width: 100%;
+    font-size: clamp(0.8rem, 3.6vw, 1.15rem);
+  }
+
+  @media (width <= 425px) {
+    max-width: 95%;
+    font-size: clamp(
+      0.7rem,
+      3.5vw,
+      1rem
+    ); // Adjusted so break happens closer to "within"
+
+    line-height: 1.35; // Small tweak for better spacing
+  }
+
+  @media (width <= 375px) {
+    max-width: 100%;
+    font-size: clamp(0.7rem, 3.7vw, 0.95rem);
+    line-height: 1.35; // Ensures proper spacing while keeping text readable
+  }
+
+  @media (width <= 320px) {
+    max-width: 100%;
+    font-size: 0.75rem; // Keeps the smallest size readable
+    line-height: 1.3;
+  }
 }
 
 .actions {
@@ -54,11 +73,33 @@
   display: flex;
   gap: space.$s3;
   margin-top: space.$s8;
+  justify-content: center;
 
-  // the > selector, is called the child combinator, this targets the direct child of the respective element
-  // * selector, is called the wild card, this targets any direct child of the action container
-  // the flex 1 ensures both buttons take up half of the container width
   & > * {
-    flex: 1;
+    flex: 1; // Ensures both buttons take up equal space
+    min-width: 120px; // Prevents them from getting too small
+    max-width: 50%; // Keeps them from growing too large
+    height: 40px; // Default button height
+    box-sizing: border-box;
+
+    @media (width <= 767px) {
+      min-width: 90px; // Shrink width for mobile
+      height: 30px; // Shrink height for mobile
+    }
+
+    @media (width <= 400px) {
+      min-width: 80px;
+      height: 25px;
+    }
+
+    @media (width >= 389px) and (width <= 442px) {
+      font-size: 0.68rem !important; // Reduce font size further
+    }
+
+    @media (width <= 389px) {
+      font-size: 0.72rem !important; // Reduce font size further
+    }
   }
 }
+
+// below 364 and above 320 wrong linebreak

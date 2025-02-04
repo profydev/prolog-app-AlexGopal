@@ -1,25 +1,3 @@
-// .overlay {
-//     position: fixed;
-//     top: 0;
-//     left: 0;
-//     width: 100%;
-//     height: 100%;
-//     background-color: rgba(0,0,0,0.5);
-//     z-index: 100;
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-// }
-
-// .dialog {
-//     background-color: white;
-//     padding: 20px;
-//     border-radius: 5px;
-//     box-shadow: 0 2px 8px rgba(0,0,0,0.26);
-//     z-index: 100;
-//     position:relative;
-// }
-
 @use "@styles/color";
 @use "@styles/space";
 @use "@styles/breakpoint";
@@ -54,4 +32,12 @@
   box-shadow:
     0 8px 8px -4px rgb(16 24 40 / 4%),
     0 20px 24px -4px rgb(16 24 40 / 10%);
+  overflow-y: auto;
+
+  @media (width < 1024px) {
+    width: 80vw; // ✅ Make it responsive without stretching
+    max-width: 25rem; // ✅ Prevent excessive stretching
+    padding: space.$s5; // ✅ Slightly reduce padding on smaller screens
+    margin-right: 32px; // ✅ Your previous fix to center it properly
+  }
 }
