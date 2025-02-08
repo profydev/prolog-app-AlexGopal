@@ -35,6 +35,12 @@ export async function getAllIssues(options?: { signal?: AbortSignal }) {
   };
 }
 
+// Ensure statusMapping is used correctly
+export const statusMapping: Record<string, string> = {
+  resolved: "resolved",
+  unresolved: "open",
+};
+
 export async function getIssues(
   page: number,
   options?: { signal?: AbortSignal },
@@ -49,7 +55,8 @@ export async function getIssues(
   };
 
   if (searchTerm) params.searchTerm = searchTerm;
-  if (status) params.status = status;
+  if (status) params.status = statusMapping[status]; // ✅ Fixed mapping issue
+  // this is so we dont pass status as a string need to pass open not unresolved to the api
   if (level) params.level = level;
   if (projectId) params.projectId = projectId;
 
@@ -58,7 +65,6 @@ export async function getIssues(
     ...options,
   });
 
-  // Debugging metadata and items
   console.log("API Response Meta:", data.meta);
   console.log("Fetched Items:", data.items);
 
