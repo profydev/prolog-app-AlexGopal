@@ -3,16 +3,6 @@ import { getAllIssues, getIssues } from "@api/issues";
 import type { Page } from "@typings/page.types";
 import type { Issue } from "@api/issues.types";
 
-export const statusMapping: Record<string, string> = {
-  resolved: "resolved", // User-facing "Resolved" maps to API "resolved"
-  unresolved: "open", // User-facing "Unresolved" maps to API "open"
-};
-
-export const reverseStatusMapping: Record<string, string> = {
-  resolved: "resolved", // API "resolved" maps back to "Resolved"
-  open: "unresolved", // API "open" maps back to "Unresolved"
-};
-
 export function useGetIssues(
   page: number,
   searchTerm?: string,
@@ -23,7 +13,7 @@ export function useGetIssues(
   const isFiltered = Boolean(searchTerm || status || level || projectId);
 
   const queryKey = isFiltered
-    ? ["issues", "all", searchTerm, status, level, projectId]
+    ? ["issues", searchTerm, status, level, projectId] // ✅ Removed "all"
     : ["issues", page];
 
   const fetchData = isFiltered
@@ -37,7 +27,6 @@ export function useGetIssues(
     { keepPreviousData: true },
   );
 
-  // Log the received metadata and data
   console.log("useGetIssues - Query Data:", query.data);
   console.log("useGetIssues - Meta:", query.data?.meta);
   console.log("useGetIssues - IsFiltered:", isFiltered);
@@ -50,19 +39,19 @@ export function useGetIssues(
       `${issue.name} ${issue.message}`
         .toLowerCase()
         .includes(searchTerm.toLowerCase());
-    const matchesStatus =
-      !status || issue.status === reverseStatusMapping[status];
+
+    const matchesStatus = !status || issue.status === status; // ✅ Fixed filtering logic
+    // dont neeed to convert open back to unresolved, we want to check if open == open because the api
+    // is looking for open
     const matchesLevel = !level || issue.level === level;
-    const matchesProject = !projectId || issue.projectId === projectId;
+    const matchesProject = projectId ? issue.projectId === projectId : true; // ✅ Fixed project filtering
 
     return matchesSearch && matchesStatus && matchesLevel && matchesProject;
   });
 
   const totalPages = isFiltered
     ? Math.ceil(filteredItems.length / 10)
-    : // use query.data instead of meta.data or sometimes the other side of the or statement may default to 1
-      // if you dont you rely on meta from an early destructing which may cause an issue
-      query.data?.meta?.totalPages || 1;
+    : query.data?.meta?.totalPages || 1;
 
   return {
     data: { items: filteredItems, meta: { totalPages } },
